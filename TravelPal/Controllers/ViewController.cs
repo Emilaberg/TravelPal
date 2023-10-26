@@ -9,7 +9,10 @@ namespace TravelPal.Controllers
 {
     public static class ViewController
     {
-
+        public static MainWindow MainWindow()
+        {
+            return new MainWindow();
+        }
         public static AccountWindow AccountWindow()
         {
             return new AccountWindow();

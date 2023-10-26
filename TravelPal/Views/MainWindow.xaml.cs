@@ -31,6 +31,8 @@ namespace TravelPal.Views
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             //Kör loginController som validerar
+            ViewController.TravelsWindow().Show();
+            Close();
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)

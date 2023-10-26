@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelPal.Views"
         mc:Ignorable="d"
-        Title="AdminPanelWindow" Height="700" Width="800" Background="#F5FFFA">
+        Title="AdminPanelWindow" Height="800" Width="900" Background="#F5FFFA">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Content="TravelPal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20"/>
+        <Button Content="Help" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#F5FFFA" BorderBrush="#000022" BorderThickness="1" FontSize="14" Margin="0 0 5 0" Padding="6 2 6 2"/>
+
+        <Label Content="UserName" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Margin="0 0 5 0"/>
+        <Button Name="BtnAccount" Content="Account" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#F5FFFA" BorderBrush="#F5FFFA" FontSize="16"/>
+        <Button Name="BtnLogout" Content="Logout" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#F5FFFA" BorderBrush="#F5FFFA" FontSize="16" Margin="0 0 10 0" Padding="6 3 6 3"/>
+
+        <Label Content="Edit users" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontSize="30"/>
+        <Border BorderBrush="#000022" BorderThickness="2" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="4" CornerRadius="10"/>
+        <ListView Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="4" Margin="5"/>
+
+        <Button Content="Remove" Grid.Column="5" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Right" Background="Red" Foreground="#F5FFFA" FontWeight="Bold" Margin="0 10 10 0" Padding="8 4 8 4" Opacity="0.5"/>
+
     </Grid>
 </Window>

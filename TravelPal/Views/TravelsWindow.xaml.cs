@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TravelPal.Controllers;
 
 namespace TravelPal.Views
 {
@@ -22,6 +23,18 @@ namespace TravelPal.Views
         public TravelsWindow()
         {
             InitializeComponent();
+        }
+
+        private void BtnAccount_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.AccountWindow().Show();
+            Close();
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.MainWindow().Show();
+            Close();
         }
     }
 }

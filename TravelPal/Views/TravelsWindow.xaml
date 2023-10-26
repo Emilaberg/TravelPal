@@ -5,8 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelPal.Views"
         mc:Ignorable="d"
-        Title="TravelsWindow" Height="450" Width="800">
+        Title="TravelsWindow" Height="700" Width="1000" Background="#F5FFFA" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Content="TravelPal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20"/>
+        <Button Content="Help" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#F5FFFA" BorderBrush="#000022" BorderThickness="1" FontSize="14" Margin="0 0 20 0" Padding="6 2 6 2"/>
+
+        <Label Content="UserName" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Margin="0 0 5 0"/>
+        <Button Name="BtnAccount" Content="Account" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#F5FFFA" BorderBrush="#F5FFFA" FontSize="16" Click="BtnAccount_Click"/>
+        <Button Name="BtnLogout" Content="Logout" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#F5FFFA" BorderBrush="#F5FFFA" FontSize="16" Margin="0 0 20 0" Padding="6 3 6 3" Click="BtnLogout_Click"/>
+        
+        
+        <Label Content="Welcome Back [Username]" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"/>
+
+        <Button Content="Add Travel" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#F5FFFA" FontSize="14" Margin="0 0 5 5" Padding="6 3 6 3"/>
+        <Border Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="4" BorderBrush="#000022" BorderThickness="2" CornerRadius="10" />
+        <ListView Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="4" Margin="5" Background="#F5FFFA" BorderBrush="#F5FFFA"/>
+
+        <Button Content="Remove" Grid.Column="5" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#F5FFFA" BorderBrush="Red" BorderThickness="2" FontSize="14" Margin="0 0 5 5" Padding="6 3 6 3"/>
+        <Button Content="Details" Grid.Column="5" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#F5FFFA" BorderBrush="#000022" BorderThickness="2" FontSize="14" Margin="0 0 5 6" Padding="6 3 6 3"/>
+        
         
     </Grid>
 </Window>
