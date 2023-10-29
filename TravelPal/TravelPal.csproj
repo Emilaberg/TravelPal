@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Classes\" />
-    <Folder Include="Managers\" />
     <Folder Include="Enums\" />
   </ItemGroup>
 
