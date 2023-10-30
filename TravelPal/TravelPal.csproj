@@ -11,9 +11,4 @@
     <None Remove="Views\MainWindow.xaml~RF123b687.TMP" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Enums\" />
-  </ItemGroup>
-
 </Project>

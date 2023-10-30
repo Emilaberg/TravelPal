@@ -25,12 +25,13 @@ namespace TravelPal.Views
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             //Kör loginController som validerar
+
+
             ViewController.TravelsWindow().Show();
             Close();
         }
