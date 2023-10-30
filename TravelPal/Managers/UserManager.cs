@@ -10,10 +10,10 @@ namespace TravelPal.Managers
 {
     public static class UserManager
     {
-        public static List<IUser> users { get; set; }
-        public static IUser signedInUser { get; set; }
+        public static List<IUser>? Users { get; set; }
+        public static IUser? SignedInUser { get; set; }
 
-        public static bool addUser(IUser user)
+        public static bool AddUser(IUser user)
         {
             //return true if successfull
             return false;
@@ -36,7 +36,7 @@ namespace TravelPal.Managers
             return false;
         }
 
-        public static bool signInUser(string username, string password)
+        public static bool SignInUser(string username, string password)
         {
             //return true if successfull
             return false;

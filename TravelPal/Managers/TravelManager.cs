@@ -11,6 +11,5 @@ namespace TravelPal.Managers
     {
         public static List<Travel>? Travels { get; set; }
 
-
     }
 }

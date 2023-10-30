@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelPal.Enums
 {
-    internal enum europeanCountry
+    public enum EuropeanCountry
     {
         Sweden,
         Denmark,

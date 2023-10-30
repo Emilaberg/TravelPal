@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelPal.Enums
 {
-    internal enum Country
+    public enum Country
     {
         UnitedStates,
         Australia,
