@@ -42,18 +42,18 @@
         <Label Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Center" Content="Login or create an Account" Foreground="#F5FFFA" FontSize="18"/>
 
         <Label Content="Username" Foreground="#F5FFFA" Grid.Column="6" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0"/>
-        <TextBox Name="txtUsername" Foreground="#F5FFFA" Grid.Column="7" Grid.Row="4" VerticalAlignment="Center" />
+        <TextBox Name="txtUsername" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="4" VerticalAlignment="Center" />
 
         <Label Content="Country" Foreground="#F5FFFA" Grid.Column="6" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0"/>
-        <ComboBox Name="cbCountry" Foreground="#F5FFFA" Grid.Column="7" Grid.Row="5" VerticalAlignment="Center"/>
+        <ComboBox Name="cbCountry" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="5" VerticalAlignment="Center"/>
 
         <Label Content="Password" Foreground="#F5FFFA" Grid.Column="6" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 8 5 0"/>
-        <TextBox Name="txtPassword" Foreground="#F5FFFA" Grid.Column="7" Grid.Row="6" VerticalAlignment="Center" Margin="0 10 0 4"/>
+        <TextBox Name="txtPassword" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="6" VerticalAlignment="Center" Margin="0 10 0 4"/>
         
         <Label Content="Confirm Password" Foreground="#F5FFFA" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="7" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 -5 5 0"/>
-        <TextBox Name="txtConfirmPassword" Foreground="#F5FFFA" Grid.Column="7" Grid.Row="7" VerticalAlignment="Top"/>
+        <TextBox Name="txtConfirmPassword" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="7" VerticalAlignment="Top"/>
 
-        <Button Name="BtnRegister" Content="Register" Grid.Column="7" Grid.Row="8" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60" Background="#F6AE2D" Foreground="#000022" BorderBrush="#F6AE2D" FontWeight="Bold" FontSize="10" />
+        <Button Name="BtnRegister" Content="Register" Grid.Column="7" Grid.Row="8" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60" Background="#F6AE2D" Foreground="#000022" BorderBrush="#F6AE2D" FontWeight="Bold" FontSize="10" Click="BtnRegister_Click" />
 
     </Grid>
 </Window>

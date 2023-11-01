@@ -43,10 +43,10 @@
         <Label Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Center" Content="Login or create an Account" Foreground="#F5FFFA" FontSize="18"/>
 
         <Label Content="Username" Foreground="#F5FFFA" Grid.Column="6" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0"/>
-        <TextBox Name="txtUsername" Foreground="#F5FFFA" Grid.Column="7" Grid.Row="4" VerticalAlignment="Center" />
+        <TextBox Name="txtUsername" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="4" VerticalAlignment="Center" />
 
         <Label Content="Password" Foreground="#F5FFFA" Grid.Column="6" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0"/>
-        <TextBox Name="txtPassword" Foreground="#F5FFFA" Grid.Column="7" Grid.Row="5" VerticalAlignment="Center" />
+        <TextBox Name="txtPassword" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="5" VerticalAlignment="Center" />
 
         <Button Name="BtnLogin" Content="Login" Grid.Column="7" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60" Background="#F6AE2D" Foreground="#000022" BorderBrush="#F6AE2D" FontWeight="Bold" FontSize="10" Click="BtnLogin_Click"/>
         <Button Name="BtnRegister" Content="Register Account" Grid.Column="7" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0" Background="#000022" Foreground="#F6AE2D" BorderBrush="#000022" FontSize="8" Click="BtnRegister_Click"/>
