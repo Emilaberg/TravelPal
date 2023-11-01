@@ -34,7 +34,7 @@ namespace TravelPal.Controllers
             }
             else
             {
-                foreach (User user in UserManager.Users!)
+                foreach (IUser user in UserManager.Users!)
                 {
                     if (user.Username == username && user.Password == password)
                     {
@@ -96,6 +96,15 @@ namespace TravelPal.Controllers
                 }
                 else
                 {
+                    //kolla om användaren redan finns
+                    foreach(IUser user in UserManager.Users!)
+                    {
+                        if(user.Username == username)
+                        {
+                            MessageBox.Show("Username is taken, choose a different username");
+                            return false;
+                        }
+                    }
                     //Här är allt korrekt och kommer returnas true!
                     return true;
                 }
