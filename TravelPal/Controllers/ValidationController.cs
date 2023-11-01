@@ -10,7 +10,7 @@ using TravelPal.Managers;
 
 namespace TravelPal.Controllers
 {
-    public static class LoginController
+    public static class ValidationController
     {
 
         //Validates the login information
@@ -104,6 +104,12 @@ namespace TravelPal.Controllers
                             MessageBox.Show("Username is taken, choose a different username");
                             return false;
                         }
+                    }
+                    //kolla så att password inte är kortare än 3 karaktärer
+                    if(password.Length < 3)
+                    {
+                        MessageBox.Show("Password needs to be longer than 3 characters");
+                        return false;
                     }
                     //Här är allt korrekt och kommer returnas true!
                     return true;

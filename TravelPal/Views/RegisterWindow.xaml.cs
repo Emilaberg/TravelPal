@@ -38,11 +38,11 @@ namespace TravelPal.Views
         {
             
             //om validateRegister returnerar true, då vill jag köra sign in user i Usermanagerklassen, där efter vill jag returnera true och logga in användaren.
-            if(LoginController.ValidateRegister(txtUsername.Text,txtPassword.Text,txtConfirmPassword.Text))
+            if(ValidationController.ValidateRegister(txtUsername.Text,txtPassword.Text,txtConfirmPassword.Text))
             {
                 //username är korrekt skrivit, nu vill vi kolla om man har selectat ett country
                 //om användaren har valt ett land, då kör jag Adduser med username och text
-                if(LoginController.ValidateSelectedCountry(cbCountry.SelectedItem.ToString()!))
+                if(ValidationController.ValidateSelectedCountry(cbCountry.SelectedItem.ToString()!))
                 {
                     //om addUser lyckats då vill jag visa accountwindow
                     if(UserManager.AddUser(txtUsername.Text, txtPassword.Text, cbCountry.SelectedItem.ToString()!)) //NOTE den kommer alltid returna true för allt är checkat, så jag behöver inte en if sats igentligen.

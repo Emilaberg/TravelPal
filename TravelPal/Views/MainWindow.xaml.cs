@@ -32,7 +32,7 @@ namespace TravelPal.Views
         {
             //Kör loginController som validerar
             
-            if (LoginController.ValidateLogin(txtUsername.Text, txtPassword.Text))
+            if (ValidationController.ValidateLogin(txtUsername.Text, txtPassword.Text))
             {
                 //Jag sätter den inloggade usern i logincontrollern om username och password stämmer överens.
                 //loginuser
