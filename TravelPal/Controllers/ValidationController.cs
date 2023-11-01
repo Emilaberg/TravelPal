@@ -36,10 +36,8 @@ namespace TravelPal.Controllers
             {
                 foreach (IUser user in UserManager.Users!)
                 {
-                    if (user.Username == username && user.Password == password)
+                    if(user.Username == username && user.Password == password)
                     {
-                        //Onödig call 
-                        //LoginUser(user);
                         UserManager.SignedInUser = user; //SETS THE LOGGED IN USER TO CURRENTSIGNEDINUSER
                         return true;
                     }
@@ -48,11 +46,7 @@ namespace TravelPal.Controllers
                         MessageBox.Show("user Found, but password is incorrect", "Alert");
                         return false;
                     }
-                    else if (user.Username != username && user.Password == password) //username was wrong
-                    {
-                        MessageBox.Show("user Found, but username is incorrect", "Alert");
-                        return false;
-                    }
+                    
                 }
                 MessageBox.Show("There are no user registrerd with these credentials.", "Alert");
 

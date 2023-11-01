@@ -31,7 +31,7 @@ namespace TravelPal.Views
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             //Kör loginController som validerar
-            
+
             if (ValidationController.ValidateLogin(txtUsername.Text, txtPassword.Text))
             {
                 //Jag sätter den inloggade usern i logincontrollern om username och password stämmer överens.
@@ -44,17 +44,16 @@ namespace TravelPal.Views
                 else
                 {
                     //Visar Accountwindow om det är en client
-                    ViewController.AccountWindow().Show();
+                    ViewController.TravelsWindow().Show();
                 }
                 Close();
-
             }
             else
             {
                 //om det blir false kommer den messagebox visas.
                 return;
             }
-
+            
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
