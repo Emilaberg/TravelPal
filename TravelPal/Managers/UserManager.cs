@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Collections.Generic;
 using TravelPal.Classes;
-using TravelPal.Enums;
 using TravelPal.Interfaces;
 
 namespace TravelPal.Managers
@@ -15,22 +9,53 @@ namespace TravelPal.Managers
         private static int id;
         public static List<IUser>? Users { get; set; } = new()
         {
-            new User("Emil", "123", Enums.Country.UnitedStates),
-            new User("Ella", "123", Enums.Country.Chile),
-            new User("ahmed", "00", Enums.Country.Canada),
-            new Admin("admin", "0", Enums.Country.Australia)
-        };
-        public static IUser? SignedInUser { get; set; } 
+            new User()
+            {
+                Username = "Emil",
+                FromEu = true,
+                Location = Enums.EuropeanCountry.Finland,
+                Password = "123",
 
-        public static bool AddUser(string username, string password, Country location)
+            },
+            new User()
+            {
+                Username = "Ella",
+                FromEu = false,
+                Location = Enums.Country.Chile,
+                Password = "123",
+            },
+            new User()
+            {
+                Username = "ahmed",
+                FromEu = false,
+                Location = Enums.Country.Canada,
+                Password = "00"
+            },
+            new Admin()
+            {
+                Username = "admin",
+                Password = "0",
+                Location = Enums.Country.Australia,
+
+            }
+        };
+        public static IUser? SignedInUser { get; set; }
+
+        public static bool AddUser(string username, string password, object location)
         {
             //skapar en ny användare
-            User newUser = new(username, password, location);
+            User newUser = new()
+            {
+                Username = username,
+                Password = password,
+                Location = location
+            };
+
             Users!.Add(newUser);
             //sätter den nya användaren till signedInUser
             SignedInUser = newUser;
             return true;
-            
+
         }
 
         public static void RemoveUser(IUser user)

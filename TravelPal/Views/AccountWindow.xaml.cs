@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using TravelPal.Controllers;
 using TravelPal.Enums;
 using TravelPal.Interfaces;
 using TravelPal.Managers;
-using TravelPal.Controllers;
 
 namespace TravelPal.Views
 {
@@ -23,7 +13,7 @@ namespace TravelPal.Views
     /// </summary>
     public partial class AccountWindow : Window
     {
-        
+
         IUser user = UserManager.SignedInUser!;
         public AccountWindow()
         {
@@ -41,10 +31,18 @@ namespace TravelPal.Views
             txtUsername.Clear();
             txtPassword.Clear();
             cbCountry.Items.Clear();
-            foreach(Country country in Enum.GetValues(typeof(Country)))
+            //Fyller upp comboboxen för countries.
+            cbCountry.Items.Add("Select a country");
+            foreach (EuropeanCountry europeanCountry in Enum.GetValues(typeof(EuropeanCountry)))
             {
-                cbCountry.Items.Add(country);
+                cbCountry.Items.Add(europeanCountry);
             }
+
+            foreach (Country Country in Enum.GetValues(typeof(Country)))
+            {
+                cbCountry.Items.Add(Country);
+            }
+            cbCountry.SelectedIndex = 0;
 
             txtUsername.Text = user.Username;
             txtPassword.Text = user.Password;
@@ -57,7 +55,7 @@ namespace TravelPal.Views
         {
 
             //kollar om man ändrar användarnamn, därefter kollar jag om användarnamnet är upptaget.
-            if(user.Username != txtUsername.Text)
+            if (user.Username != txtUsername.Text)
             {
                 string oldUsername = user.Username;
                 user.Username = txtUsername.Text;
@@ -69,26 +67,30 @@ namespace TravelPal.Views
                     oldUsername = "";
                     return;
                 }
-                
+
             }
-            
-            if(txtConfirmNewPassword.Text != "")
+            //kollar om användare vill byta lösenord
+            if (txtConfirmNewPassword.Text != "")
             {
+                //Kolla så att lösenorden stämmer överens
                 if (txtPassword.Text != txtConfirmNewPassword.Text)
                 {
                     MessageBox.Show("Password must match");
                     return;
                 }
+                //sätter det nya lösenordet
                 user.Password = txtPassword.Text;
             }
 
-            if ((Country)cbCountry.SelectedIndex != user.Location)
+            //kollar om användare har valt ett annat land.
+            if ((object)cbCountry.SelectedIndex != user.Location)
             {
-                user.Location = (Country)cbCountry.SelectedIndex;
+                //sätter användarens location till det man valt, castat som ett objekt.
+                user.Location = (object)cbCountry.SelectedIndex;
             }
             UpdateUi("update");
-            MessageBox.Show("Updated successfull","Info");
-            
+            MessageBox.Show("Updated successfull", "Info");
+
         }
 
         private void BtnGoBack_Click(object sender, RoutedEventArgs e)
