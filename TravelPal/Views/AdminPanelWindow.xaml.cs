@@ -71,5 +71,11 @@ namespace TravelPal.Views
             ViewController.MainWindow().Show();
             Close();
         }
+
+        private void BtnAccount_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.AccountWindow().Show();
+            Close();
+        }
     }
 }

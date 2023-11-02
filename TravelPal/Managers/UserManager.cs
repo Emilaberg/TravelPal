@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using TravelPal.Classes;
+using TravelPal.Enums;
 using TravelPal.Interfaces;
 
 namespace TravelPal.Managers
@@ -14,14 +15,14 @@ namespace TravelPal.Managers
         private static int id;
         public static List<IUser>? Users { get; set; } = new()
         {
-            new User("Emil", "123", "sweden"),
-            new User("Ella", "123", "Sweden"),
-            new User("ahmed", "00", "afganistan"),
-            new Admin("admin", "0", "usbeck")
+            new User("Emil", "123", Enums.Country.UnitedStates),
+            new User("Ella", "123", Enums.Country.Chile),
+            new User("ahmed", "00", Enums.Country.Canada),
+            new Admin("admin", "0", Enums.Country.Australia)
         };
         public static IUser? SignedInUser { get; set; } 
 
-        public static bool AddUser(string username, string password, string location)
+        public static bool AddUser(string username, string password, Country location)
         {
             //skapar en ny användare
             User newUser = new(username, password, location);

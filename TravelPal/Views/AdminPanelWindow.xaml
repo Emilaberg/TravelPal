@@ -32,7 +32,7 @@
         <Button Content="Help" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#14591D" Foreground="#F5FFFA" FontSize="14" Margin="0 0 5 0" Padding="6 2 6 2"/>
 
         <Label Content="UserName" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Margin="0 0 5 0" Foreground="#7B68EE" FontWeight="Medium"/>
-        <Button Name="BtnAccount" Content="Account" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#7B68EE" Background="#F5FFFA" BorderBrush="#F5FFFA" FontSize="16"/>
+        <Button Name="BtnAccount" Content="Account" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#7B68EE" Background="#F5FFFA" BorderBrush="#F5FFFA" FontSize="16" Click="BtnAccount_Click"/>
         <Button Name="BtnLogout" Content="Logout" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#F5FFFA" Foreground="#F6AE2D" BorderBrush="#F5FFFA" FontSize="16" Margin="0 0 10 0" Padding="6 3 6 3" Click="BtnLogout_Click"/>
 
         <Label Content="Edit users" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontSize="30" Foreground="#F6AE2D"/>

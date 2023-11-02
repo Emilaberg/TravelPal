@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TravelPal.Enums;
+using TravelPal.Interfaces;
+using TravelPal.Managers;
+using TravelPal.Controllers;
 
 namespace TravelPal.Views
 {
@@ -19,9 +23,75 @@ namespace TravelPal.Views
     /// </summary>
     public partial class AccountWindow : Window
     {
+        IUser user = UserManager.SignedInUser!;
         public AccountWindow()
         {
             InitializeComponent();
+            UpdateUi("init");
+        }
+
+        private void UpdateUi(string info)
+        {
+            if (info == "update" || info == "cancel")
+            {
+                txtConfirmNewPassword.Clear();
+            }
+
+            txtUsername.Clear();
+            txtPassword.Clear();
+            cbCountry.Items.Clear();
+            foreach(Country country in Enum.GetValues(typeof(Country)))
+            {
+                cbCountry.Items.Add(country);
+            }
+
+            txtUsername.Text = user.Username;
+            txtPassword.Text = user.Password;
+
+            cbCountry.SelectedIndex = (int)user.Location;
+
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if(txtConfirmNewPassword.Text != "")
+            {
+                if (txtPassword.Text != txtConfirmNewPassword.Text)
+                {
+                    MessageBox.Show("Password must match");
+                    return;
+                }
+                user.Password = txtPassword.Text;
+            }
+            
+            user.Username = txtUsername.Text;
+            user.Location = (Country)cbCountry.SelectedIndex;
+            UpdateUi("update");
+            MessageBox.Show("Updated successfull","Info");
+            
+        }
+
+        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.TravelsWindow().Show();
+            Close();
+        }
+
+        private void BtnRemoveAccount_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("YOU ARE ABOUT TO REMOVE YOUR ACCOUNT DO YOU WANT TO PROCEED?", "WARNING", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                //removes the user
+                UserManager.Users!.Remove(user);
+                UserManager.SignedInUser = null;
+                ViewController.MainWindow().Show();
+                Close();
+            }
+        }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateUi("cancel");
         }
     }
 }
