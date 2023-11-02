@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TravelPal.Classes;
+using TravelPal.Enums;
 using TravelPal.Interfaces;
 
 namespace TravelPal.Managers
@@ -48,7 +49,8 @@ namespace TravelPal.Managers
             {
                 Username = username,
                 Password = password,
-                Location = location
+                Location = location,
+                FromEu = location.GetType().Equals(typeof(EuropeanCountry)) ? true : false //jag kollar om typen av location (GetType) är lika med (Equals) europeanCountry (typeOf()), om det är det sätter jag FromEu till true, annars false
             };
 
             Users!.Add(newUser);

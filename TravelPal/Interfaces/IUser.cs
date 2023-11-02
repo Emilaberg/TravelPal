@@ -6,6 +6,7 @@
         public string Username { get; set; }
         public string Password { get; set; }
         public object Location { get; set; }
+        public bool FromEu { get; set; }
 
         public string GetInfo();
     }

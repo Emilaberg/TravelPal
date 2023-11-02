@@ -9,7 +9,7 @@ namespace TravelPal.Classes
         public string Password { get; set; }
         public object Location { get; set; }
 
-
+        public bool FromEu { get; set; }
         public string GetInfo()
         {
             return $"Username {Username} Password: {Password}";

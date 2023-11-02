@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using TravelPal.Controllers;
 using TravelPal.Enums;
 using TravelPal.Interfaces;
@@ -18,6 +19,17 @@ namespace TravelPal.Views
         public AccountWindow()
         {
             InitializeComponent();
+            //Fyller upp comboboxen för countries.
+            cbCountry.Items.Add("Select a country");
+            foreach (EuropeanCountry europeanCountry in Enum.GetValues(typeof(EuropeanCountry)))
+            {
+                cbCountry.Items.Add(europeanCountry);
+            }
+
+            foreach (Country Country in Enum.GetValues(typeof(Country)))
+            {
+                cbCountry.Items.Add(Country);
+            }
             UpdateUi("init");
         }
 
@@ -30,26 +42,29 @@ namespace TravelPal.Views
 
             txtUsername.Clear();
             txtPassword.Clear();
-            cbCountry.Items.Clear();
-            //Fyller upp comboboxen för countries.
-            cbCountry.Items.Add("Select a country");
-            foreach (EuropeanCountry europeanCountry in Enum.GetValues(typeof(EuropeanCountry)))
-            {
-                cbCountry.Items.Add(europeanCountry);
-            }
-
-            foreach (Country Country in Enum.GetValues(typeof(Country)))
-            {
-                cbCountry.Items.Add(Country);
-            }
-            cbCountry.SelectedIndex = 0;
 
             txtUsername.Text = user.Username;
             txtPassword.Text = user.Password;
 
             cbCountry.SelectedIndex = (int)user.Location;
 
+
+            if (user.FromEu.Equals(true))
+            {
+                isFromEu.IsChecked = true;
+                isFromEu.BorderBrush = new SolidColorBrush(Colors.LimeGreen);
+                isFromEu.Foreground = new SolidColorBrush(Colors.LimeGreen);
+            }
+            else
+            {
+                isFromEu.IsChecked = false;
+                isFromEu.BorderBrush = new SolidColorBrush(Colors.Red);
+                isFromEu.Foreground = new SolidColorBrush(Colors.Red);
+            }
+
         }
+
+
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -83,12 +98,13 @@ namespace TravelPal.Views
             }
 
             //kollar om användare har valt ett annat land.
-            if ((object)cbCountry.SelectedIndex != user.Location)
+            if ((object)cbCountry.SelectedItem != user.Location)
             {
                 //sätter användarens location till det man valt, castat som ett objekt.
-                user.Location = (object)cbCountry.SelectedIndex;
+                user.Location = (object)cbCountry.SelectedItem;
+                user.FromEu = cbCountry.SelectedItem.GetType().Equals(typeof(EuropeanCountry)) ? true : false;
             }
-            UpdateUi("update");
+            //UpdateUi("update");
             MessageBox.Show("Updated successfull", "Info");
 
         }
@@ -115,5 +131,24 @@ namespace TravelPal.Views
         {
             UpdateUi("cancel");
         }
+
+        private void cbCountry_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+            if (cbCountry.SelectedItem.GetType().Equals(typeof(EuropeanCountry)))
+            {
+                isFromEu.IsChecked = true;
+                isFromEu.BorderBrush = new SolidColorBrush(Colors.LimeGreen);
+                isFromEu.Foreground = new SolidColorBrush(Colors.LimeGreen);
+            }
+            else
+            {
+                isFromEu.IsChecked = false;
+                isFromEu.BorderBrush = new SolidColorBrush(Colors.Red);
+                isFromEu.Foreground = new SolidColorBrush(Colors.Red);
+            }
+        }
+
+
     }
 }
