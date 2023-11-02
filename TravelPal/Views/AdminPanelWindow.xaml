@@ -33,13 +33,13 @@
 
         <Label Content="UserName" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Margin="0 0 5 0" Foreground="#7B68EE" FontWeight="Medium"/>
         <Button Name="BtnAccount" Content="Account" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#7B68EE" Background="#F5FFFA" BorderBrush="#F5FFFA" FontSize="16"/>
-        <Button Name="BtnLogout" Content="Logout" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#F5FFFA" Foreground="#F6AE2D" BorderBrush="#F5FFFA" FontSize="16" Margin="0 0 10 0" Padding="6 3 6 3"/>
+        <Button Name="BtnLogout" Content="Logout" Grid.Column="6" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#F5FFFA" Foreground="#F6AE2D" BorderBrush="#F5FFFA" FontSize="16" Margin="0 0 10 0" Padding="6 3 6 3" Click="BtnLogout_Click"/>
 
         <Label Content="Edit users" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontSize="30" Foreground="#F6AE2D"/>
         <Border BorderBrush="#000022" BorderThickness="2" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="4" CornerRadius="10"/>
-        <ListView Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="4" Margin="5"/>
+        <ListView Name="lstUsers" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="4" Margin="5" SelectionChanged="lstUsers_SelectionChanged"/>
 
-        <Button Content="Remove" Grid.Column="5" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Right" Background="Red" Foreground="#F5FFFA" FontWeight="Bold" Margin="0 10 10 0" Padding="8 4 8 4" Opacity="0.5"/>
+        <Button Name="BtnRemove" Content="Remove" Grid.Column="5" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Right" Background="Red" Foreground="#F5FFFA" FontWeight="Bold" Margin="0 10 10 0" Padding="8 4 8 4" Opacity="0.5" Click="BtnRemove_Click" />
 
     </Grid>
 </Window>

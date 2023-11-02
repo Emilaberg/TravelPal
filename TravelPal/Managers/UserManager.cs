@@ -11,11 +11,13 @@ namespace TravelPal.Managers
 {
     public static class UserManager
     {
+        private static int id;
         public static List<IUser>? Users { get; set; } = new()
         {
             new User("Emil", "123", "sweden"),
             new User("Ella", "123", "Sweden"),
-            new User("ahmed", "00", "afganistan")
+            new User("ahmed", "00", "afganistan"),
+            new Admin("admin", "0", "usbeck")
         };
         public static IUser? SignedInUser { get; set; } 
 
@@ -53,6 +55,11 @@ namespace TravelPal.Managers
         {
             //return true if successfull
             return false;
+        }
+
+        public static int CreateId()
+        {
+            return id++;
         }
 
     }
