@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelPal.Controllers;
+using TravelPal.Interfaces;
 using TravelPal.Managers;
 
 namespace TravelPal.Views
@@ -21,9 +22,25 @@ namespace TravelPal.Views
     /// </summary>
     public partial class TravelsWindow : Window
     {
+        IUser user = UserManager.SignedInUser;
         public TravelsWindow()
         {
+
             InitializeComponent();
+
+            InitUi();
+            UpdateUi();
+        }
+
+        private void InitUi()
+        {
+            txtUsername.Content = user.Username;
+            txtWelcome.Content = $"Welcome Back {user.Username}";
+        }
+
+        private void UpdateUi()
+        {
+            
         }
 
         private void BtnAccount_Click(object sender, RoutedEventArgs e)
