@@ -23,6 +23,7 @@ namespace TravelPal.Views
     /// </summary>
     public partial class AccountWindow : Window
     {
+        
         IUser user = UserManager.SignedInUser!;
         public AccountWindow()
         {
@@ -54,6 +55,23 @@ namespace TravelPal.Views
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+
+            //kollar om man ändrar användarnamn, därefter kollar jag om användarnamnet är upptaget.
+            if(user.Username != txtUsername.Text)
+            {
+                string oldUsername = user.Username;
+                user.Username = txtUsername.Text;
+                int count = UserManager.Users!.Count(u => u.Username == txtUsername.Text);
+                if (count > 1)
+                {
+                    MessageBox.Show("Username is taken, Choose a different one", "Warning");
+                    user.Username = oldUsername;
+                    oldUsername = "";
+                    return;
+                }
+                
+            }
+            
             if(txtConfirmNewPassword.Text != "")
             {
                 if (txtPassword.Text != txtConfirmNewPassword.Text)
@@ -63,9 +81,11 @@ namespace TravelPal.Views
                 }
                 user.Password = txtPassword.Text;
             }
-            
-            user.Username = txtUsername.Text;
-            user.Location = (Country)cbCountry.SelectedIndex;
+
+            if ((Country)cbCountry.SelectedIndex != user.Location)
+            {
+                user.Location = (Country)cbCountry.SelectedIndex;
+            }
             UpdateUi("update");
             MessageBox.Show("Updated successfull","Info");
             
