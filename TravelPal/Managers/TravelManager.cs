@@ -12,11 +12,28 @@ namespace TravelPal.Managers
     public static class TravelManager
     {
         private static int id;
-        public static List<Travel>? Travels { get; set; }
-        private static int CalculateDays()
+        public static List<Travel>? Travels { get; set; } = new()
         {
-            throw new NotImplementedException();
-        }
+            new Travel ( 
+                "Tokyo",
+                Country.Japan,
+                2,
+                new List<IPackingListItem>() { new OtherItem("ToothBrush", 1), new TravelDocument("Passport", true) },
+                new DateTime(2023,11,10),
+                new DateTime(2023,11,20),
+                1
+            ),
+            new Travel (
+                "Madrid",
+                EuropeanCountry.Spain,
+                2,
+                new List<IPackingListItem>() { new OtherItem("ToothBrush", 1), new TravelDocument("Passport", false) },
+                new DateTime(2023,11,20),
+                new DateTime(2023,11,30),
+                1
+            ),
+        };
+        
 
         public static int CreateId()
         {
@@ -28,7 +45,7 @@ namespace TravelPal.Managers
         {
             List<Travel> usersTravels = new();
 
-            foreach(Travel travel in Travels)
+            foreach(Travel travel in Travels!)
             {
                 if(travel.UserId == userId)
                 {

@@ -87,7 +87,7 @@ namespace TravelPal.Managers
 
         public static int CreateId()
         {
-            return id++;
+            return ++id;
         }
 
     }

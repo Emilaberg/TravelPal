@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using TravelPal.Controllers;
 using TravelPal.Interfaces;
 using TravelPal.Managers;
+using TravelPal.Classes;
 
 namespace TravelPal.Views
 {
@@ -35,7 +36,17 @@ namespace TravelPal.Views
         private void InitUi()
         {
             txtUsername.Content = user.Username;
-            txtWelcome.Content = $"Welcome Back {user.Username}";
+            txtWelcome.Content = $"Welcome Back {user.Username} {user.Id}";
+
+            //hämtar alla users travels och lägger in dom i travelslist
+            List<Travel> usersTravels = TravelManager.GetUserTravel(user.Id);
+            foreach (Travel travel in usersTravels)
+            {
+                ListViewItem userTravel = new();
+                userTravel.Content = travel.GetInfo();
+                userTravel.Tag = travel;
+                lstUserTravels.Items.Add(userTravel);
+            }
         }
 
         private void UpdateUi()

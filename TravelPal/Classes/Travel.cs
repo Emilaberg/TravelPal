@@ -18,29 +18,30 @@ namespace TravelPal.Classes
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int TravelDays { get; set; }
+        public double TravelDays { get; set; }
 
-        public Travel(string destination, object countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int travelDays)
+        public Travel(string destination, object countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate,int userId)
         {
+            
             this.Destination = destination;
             this.Countries = countries;
             this.Travellers = travellers;
             this.PackingList = packingList;
             this.StartDate = startDate;
             this.EndDate = endDate;
-            this.TravelDays = travelDays;
+            this.TravelDays = CalculateTravelDays(startDate,endDate);
+            UserId = userId;
         }
 
         public virtual string GetInfo()
         {
-            return $"${Destination},${Countries}, ${Travellers}, ${StartDate}, ${EndDate}, ${TravelDays} ";
+            return $"Place: {Destination}, Country: {Countries}, travellers: {Travellers}, from: {StartDate.ToString("yyyy-MM-dd")}, to: {EndDate.ToString("yyyy-MM-dd")}, Traveldays: {TravelDays} ";
         }
 
-        private int CalculateTravelDays()
+        private static double CalculateTravelDays(DateTime startDate, DateTime endDate)
         {
-            //räkna ut antalet traveldays
-            //temporär int.
-            return 10;
+            var traveldays = endDate - startDate;
+            return double.Floor(traveldays.Days);
         }
     }
 }
