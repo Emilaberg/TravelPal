@@ -11,7 +11,7 @@ namespace TravelPal.Classes
     {
         public string MeetingDetails { get; set; }
 
-        public WorkTrip(string meetingDetails, string destination, string countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int travelDays) : base(destination,countries,travellers,packingList,startDate,endDate,travelDays)
+        public WorkTrip(string meetingDetails, string destination, object countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int userId) : base(destination,countries,travellers,packingList,startDate,endDate, userId)
         {
             this.MeetingDetails = meetingDetails;
         }
@@ -19,7 +19,7 @@ namespace TravelPal.Classes
         public override string GetInfo()
         {
             //returnera information om själva resan
-            return $"";
+            return $"Place: {Destination}, Country: {Countries}, travellers: {Travellers}, from: {StartDate.ToString("yyyy-MM-dd")}, to: {EndDate.ToString("yyyy-MM-dd")}, Traveldays: {TravelDays} "; ;
         }
         
     }

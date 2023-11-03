@@ -11,7 +11,7 @@ namespace TravelPal.Classes
     {
         public bool AllInclusive { get; set; }
 
-        public Vacation(bool allInclusive, string destination, string countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int travelDays) : base(destination, countries, travellers, packingList, startDate, endDate, travelDays)
+        public Vacation(bool allInclusive, string destination, object countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate,int userId) : base(destination, countries, travellers, packingList, startDate, endDate,userId)
         {
             this.AllInclusive = allInclusive;
         }
@@ -19,7 +19,7 @@ namespace TravelPal.Classes
         public override string GetInfo()
         {
             //returna information om själva resan.
-            return $"";
+            return $"Place: {Destination}, Country: {Countries}, travellers: {Travellers}, from: {StartDate.ToString("yyyy-MM-dd")}, to: {EndDate.ToString("yyyy-MM-dd")}, Traveldays: {TravelDays} "; ;
         }
     }
 }

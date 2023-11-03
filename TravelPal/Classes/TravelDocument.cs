@@ -20,7 +20,8 @@ namespace TravelPal.Classes
 
         public string GetInfo()
         {
-            return Name;
+            string info = Required ? "Is required" : "Is not required";
+            return $"Item: {Name} {info}";
         }
     }
 }

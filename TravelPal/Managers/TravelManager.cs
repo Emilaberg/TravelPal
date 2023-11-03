@@ -14,7 +14,8 @@ namespace TravelPal.Managers
         private static int id;
         public static List<Travel>? Travels { get; set; } = new()
         {
-            new Travel ( 
+            new Vacation ( 
+                true,
                 "Tokyo",
                 Country.Japan,
                 2,
@@ -23,7 +24,9 @@ namespace TravelPal.Managers
                 new DateTime(2023,11,20),
                 1
             ),
-            new Travel (
+
+            new WorkTrip (
+                "meet with boss",
                 "Madrid",
                 EuropeanCountry.Spain,
                 2,
@@ -37,7 +40,7 @@ namespace TravelPal.Managers
 
         public static int CreateId()
         {
-            return id++;
+            return ++id;
         }
 
         //Gets all of the requested users travel

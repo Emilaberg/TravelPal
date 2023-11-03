@@ -38,42 +38,40 @@
         <!--All the labels for added a travel-->
         <Border Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="8" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="0 0 10 0"/>
         <!--City-->
-        <Label Content="City" Grid.Column="2" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
-        <TextBox Grid.Column="3" Grid.Row="2" Height="30" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 10 0"/>
+        <Label Name="lblCity" Content="City" Grid.Column="2" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
+        <TextBox Name="txtDestination" Grid.Column="3" Grid.Row="2" Height="30" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 10 0"/>
         <!--Country-->
-        <Label Content="Country" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
-        <TextBox Grid.Column="3" Grid.Row="3" Height="30" VerticalAlignment="Center" BorderBrush="black" Margin="0 0 10 0"/>
+        <Label Name="lblCountry" Content="Country" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
+        <ComboBox Name="cbCountry" Grid.Column="3" Grid.Row="3" Height="25" VerticalAlignment="Center" BorderBrush="black" Margin="0 0 10 0"/>
         <!--Amount of travelers-->
-        <Label Content="Amount of travelers" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
-        <TextBox Grid.Column="3" Grid.Row="4" Height="30" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 10 0"/>
+        <Label Name="lblAmountOfTravelers" Content="Amount of travelers" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
+        <TextBox Name="txtAmountOfTravelers" Grid.Column="3" Grid.Row="4" Height="30" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 10 0"/>
         <!--Start date-->
-        <Label Content="Start Date" Grid.Column="2" Grid.Row="5" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
-        <DatePicker Grid.Column="3" Grid.Row="5" Height="30" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 10 0"/>
+        <Label Name="lblStartDate" Content="Start Date" Grid.Column="2" Grid.Row="5" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
+        <DatePicker Name="DateStartDate" Grid.Column="3" Grid.Row="5" Height="30" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 10 0"/>
         <!--end date-->
-        <Label Content="End Date" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
-        <DatePicker Grid.Column="3" Grid.Row="6" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" BorderBrush="black" Margin="0 0 10 0"/>
+        <Label Name="lblEndDate" Content="End Date" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
+        <DatePicker Name="DateEndDate" Grid.Column="3" Grid.Row="6" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" BorderBrush="black" Margin="0 0 10 0"/>
         <!--type of travel-->
-        <Label Content="Type of travel" Grid.Column="2" Grid.Row="7" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
-        <ComboBox Grid.Column="3" Grid.Row="7" Height="30" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 10 0"/>
+        <Label Name="lblTypeOfTravel" Content="Type of travel" Grid.Column="2" Grid.Row="7" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
+        <ComboBox Name="cbTypeOfTravel" Grid.Column="3" Grid.Row="7" Height="30" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 10 0" SelectionChanged="cbTypeOfTravel_SelectionChanged"/>
         <!--all inclusive-->
-        <Label Content="All inclusive?" Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="10" Padding="0" Margin="0 -25 0 0" FontWeight="DemiBold"/>
-        <CheckBox Name="cbxAllinclusiv" Grid.Column="4" Grid.Row="7" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 5">
+        <Label Visibility="Hidden" Name="lblAllInclusive" Content="All inclusive?" Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="10" Padding="0" Margin="0 -25 0 0" FontWeight="DemiBold"/>
+        <CheckBox Visibility="Hidden" Name="cbxAllInclusiv" Grid.Column="4" Grid.Row="7" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 5">
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
             </CheckBox.LayoutTransform>
         </CheckBox>
         <!--meeting details-->
-        <Label Name="lblMeetingDetails" Content="Meeting Details" Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="10" Padding="0" Margin="0 -25 0 0" FontWeight="DemiBold"/>
-        <CheckBox Name="cbxMeetingDetails" Grid.Column="4" Grid.Row="7" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 5">
+        <Label Visibility="Hidden" Name="lblMeetingDetails" Content="Meeting Details" Grid.Column="4" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="10" Padding="0" Margin="0 -25 0 0" FontWeight="DemiBold"/>
+        <CheckBox Name="cbxMeetingDetails" Grid.Column="4" Grid.Row="7" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 5" Checked="cbxMeetingDetails_Checked">
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
             </CheckBox.LayoutTransform>
         </CheckBox>
 
-        <TextBox Name="txtMeetingDetails" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" Height="70" Width="180" HorizontalAlignment="Right" Margin="0 -10 10 0"/>
+        <TextBox Visibility="Hidden" Text="Meeting Details..." Name="txtMeetingDetails" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" Height="70" Width="180" HorizontalAlignment="Right" Margin="0 -10 10 0"/>
 
-        
-        
         
         
         <!--All the labels for added a packing item-->
@@ -81,33 +79,34 @@
         <Border Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="8" BorderBrush="Black" BorderThickness="2" CornerRadius="10"/>
 
         <Label Content="Add a new item" Grid.Column="5" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
-        <TextBox Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="2" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="black"/>
+        <TextBox Name="txtNameOfItem" Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="2" Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="black"/>
 
         <Label Name="lblQuantity" Content="Quantity" Grid.Column="5" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
         <TextBox Name="txtQuantity" Grid.Column="6" Grid.Row="3" Height="25" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 5 0"/>
 
-        <Label Name="lblRequired" Content="Required" Grid.Column="5" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
-        <CheckBox Name="cbxRequired" Grid.Column="6" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 5">
+        <Label Visibility="Hidden" Name="lblRequired" Content="Required" Grid.Column="5" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
+        <CheckBox Visibility="Hidden" Name="cbxRequired" Grid.Column="6" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 5">
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
             </CheckBox.LayoutTransform>
         </CheckBox>
 
         <Label Name="lblTravelDocument" Content="Is the item a travel document?" Grid.Column="7" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="8" FontWeight="DemiBold" Margin="-4 -10 0 0"/>
-        <CheckBox Name="cbxTravelDocument" Grid.Column="7" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 5">
+        <CheckBox Name="cbxTravelDocument" Grid.Column="7" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 0 0 5" Checked="cbxTravelDocument_Checked" Unchecked="cbxTravelDocument_UnChecked">
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1" ScaleY="1"/>
             </CheckBox.LayoutTransform>
         </CheckBox>
 
-        <Button Content="Add Item" Grid.Column="7" Grid.Row="4" Height="20" Width="60" Background="#F6AE2D" Foreground="#000022" BorderBrush="#F6AE2D" FontSize="10" FontWeight="DemiBold"/>
-
+        <Button Name="BtnAddPackListItem" Content="Add Item" Grid.Column="7" Grid.Row="4" Height="20" Width="60" Background="#F6AE2D" Foreground="#000022" BorderBrush="#F6AE2D" FontSize="10" FontWeight="DemiBold" Click="BtnAddPackListItem_Click"/>
 
         <Border Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="5" Grid.RowSpan="4" BorderBrush="Black" BorderThickness="2" CornerRadius="10" Margin="10 0 10 0"/>
-        <Button Content="Remove item" Grid.Column="7" Grid.Row="9" Height="20" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#F5FFFA" Foreground="#000022" BorderBrush="red" FontSize="10" FontWeight="DemiBold" Margin="0 10 15 0"/>
+        <ListView Name="lstPackingList" Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="5" Grid.RowSpan="4" Margin="15 8 15 10" BorderBrush="#F5FFFA" Background="#F5FFFA"/>
+        
+        <Button Content="Remove item" Grid.Column="7" Grid.Row="9" Height="20" Width="70" VerticalAlignment="Top" HorizontalAlignment="Right" Background="#F5FFFA" Foreground="#000022" BorderBrush="red" FontSize="10" FontWeight="DemiBold" Margin="0 10 15 0" Click="Button_Click"/>
 
         <Button Name="BtnCancel" Content="Cancel" Grid.Column="7" Grid.Row="10" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Height="30" Background="#F5FFFA" Foreground="#000022"  BorderThickness="2" BorderBrush="#000022" Margin="-20 10 0 0"/>
-        <Button Name="BtnSave" Content="Save" Grid.Column="7" Grid.Row="10" VerticalAlignment="Top" HorizontalAlignment="Right" Width="60" Height="30" Background="#F5FFFA" Foreground="#000022" FontWeight="Bold" BorderBrush="LimeGreen" BorderThickness="2" Margin="0 10 10 0"/>
+        <Button Name="BtnSave" Content="Save" Grid.Column="7" Grid.Row="10" VerticalAlignment="Top" HorizontalAlignment="Right" Width="60" Height="30" Background="#F5FFFA" Foreground="#000022" FontWeight="Bold" BorderBrush="LimeGreen" BorderThickness="2" Margin="0 10 10 0" Click="BtnSave_Click"/>
         <Button Name="BtnGoBack" Content="Go Back" Grid.Column="7" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60" Height="30" Background="#F5FFFA" Foreground="#000022" FontWeight="Bold" BorderBrush="LimeGreen" BorderThickness="2" Margin="0 0 10 4" Click="BtnGoBack_Click"/>
     </Grid>
 </Window>

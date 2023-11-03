@@ -20,7 +20,7 @@ namespace TravelPal.Classes
 
         public string GetInfo()
         {
-            return Name;
+            return $"Item: {Name} amount: {Quantity}";
         }
     }
 }
