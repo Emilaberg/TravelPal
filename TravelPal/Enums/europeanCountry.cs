@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TravelPal.Enums
+﻿namespace TravelPal.Enums
 {
     public enum EuropeanCountry
     {
@@ -17,7 +11,6 @@ namespace TravelPal.Enums
         Spain,
         France,
         Portugal,
-
 
     }
 }
