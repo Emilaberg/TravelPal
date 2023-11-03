@@ -9,8 +9,10 @@ namespace TravelPal.Classes
 {
     public class Travel
     {
+        public int TravelId { get; } = TravelManager.CreateId();
+        public int UserId { get; set; }
         public string Destination { get; set; }
-        public string Countries { get; set; }
+        public object Countries { get; set; }
         public int Travellers { get; set; }
         public List<IPackingListItem> PackingList { get; set; }
 
@@ -18,7 +20,7 @@ namespace TravelPal.Classes
         public DateTime EndDate { get; set; }
         public int TravelDays { get; set; }
 
-        public Travel(string destination, string countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int travelDays)
+        public Travel(string destination, object countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int travelDays)
         {
             this.Destination = destination;
             this.Countries = countries;

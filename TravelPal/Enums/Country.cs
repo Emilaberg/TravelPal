@@ -15,5 +15,6 @@ namespace TravelPal.Enums
         Canada,
         Chile,
         Argentina,
+        Japan,
     }
 }
