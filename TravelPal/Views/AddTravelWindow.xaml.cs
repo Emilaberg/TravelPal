@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelPal.Classes;
+using TravelPal.Controllers;
 using TravelPal.Managers;
 
 namespace TravelPal.Views
@@ -39,6 +40,11 @@ namespace TravelPal.Views
         private void InitUi()
         {
             
+        }
+        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.TravelsWindow().Show();
+            Close();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace TravelPal.Views
             InitializeComponent();
 
             InitUi();
-            UpdateUi();
+            
         }
 
         private void InitUi()
@@ -49,7 +49,7 @@ namespace TravelPal.Views
             }
         }
 
-        private void UpdateUi()
+        private void UpdateUi(string type)
         {
             
         }
