@@ -50,7 +50,7 @@ namespace TravelPal.Managers
                 Username = username,
                 Password = password,
                 Location = location,
-                FromEu = location.GetType().Equals(typeof(EuropeanCountry)) ? true : false //jag kollar om typen av location (GetType) är lika med (Equals) europeanCountry (typeOf()), om det är det sätter jag FromEu till true, annars false
+                FromEu = location.GetType().Equals(typeof(EuropeanCountry))//jag kollar om typen av location (GetType) är lika med (Equals) europeanCountry (typeOf()), om det är det sätter jag FromEu till true, annars false
             };
 
             Users!.Add(newUser);

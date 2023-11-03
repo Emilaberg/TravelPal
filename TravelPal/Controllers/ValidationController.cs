@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using TravelPal.Classes;
+﻿using System.Windows;
 using TravelPal.Interfaces;
 using TravelPal.Managers;
 
@@ -36,7 +30,7 @@ namespace TravelPal.Controllers
             {
                 foreach (IUser user in UserManager.Users!)
                 {
-                    if(user.Username == username && user.Password == password)
+                    if (user.Username == username && user.Password == password)
                     {
                         UserManager.SignedInUser = user; //SETS THE LOGGED IN USER TO CURRENTSIGNEDINUSER
                         return true;
@@ -46,13 +40,13 @@ namespace TravelPal.Controllers
                         MessageBox.Show("user Found, but password is incorrect", "Alert");
                         return false;
                     }
-                    
+
                 }
                 MessageBox.Show("There are no user registrerd with these credentials.", "Alert");
 
                 return false;
             }
-            
+
         }
 
 
@@ -60,7 +54,7 @@ namespace TravelPal.Controllers
         //Validates the register information
         public static bool ValidateRegister(string username, string password, string confirmPassword)
         {
-            
+
             if (username == "" && password == "" && confirmPassword == "") //Om man inte skrivit in nånting alls
             {
                 MessageBox.Show("you need to type a username, password and confirm password", "Alert");
@@ -91,16 +85,16 @@ namespace TravelPal.Controllers
                 else
                 {
                     //kolla om användaren redan finns
-                    foreach(IUser user in UserManager.Users!)
+                    foreach (IUser user in UserManager.Users!)
                     {
-                        if(user.Username == username)
+                        if (user.Username == username)
                         {
                             MessageBox.Show("Username is taken, choose a different username");
                             return false;
                         }
                     }
                     //kolla så att password inte är kortare än 3 karaktärer
-                    if(password.Length < 3)
+                    if (password.Length < 3)
                     {
                         MessageBox.Show("Password needs to be longer than 3 characters");
                         return false;
@@ -109,20 +103,21 @@ namespace TravelPal.Controllers
                     return true;
                 }
             }
-            
+
         }
 
         public static bool ValidateSelectedCountry(string Location)
         {
-            if(Location == "Select a country")
+            if (Location == "Select a country")
             {
                 MessageBox.Show("you need to select a country", "warning");
                 return false;
             }
             return true;
         }
+
         //använder ej då jag tycker att det ej behövs
-        public static void LoginUser(IUser user) 
+        public static void LoginUser(IUser user)
         {
             //hämta
             UserManager.SignedInUser = user; //SETS THE LOGGED IN USER TO CURRENTSIGNEDINUSER

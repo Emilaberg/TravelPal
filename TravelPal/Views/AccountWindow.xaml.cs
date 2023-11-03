@@ -102,7 +102,7 @@ namespace TravelPal.Views
             {
                 //sätter användarens location till det man valt, castat som ett objekt.
                 user.Location = (object)cbCountry.SelectedItem;
-                user.FromEu = cbCountry.SelectedItem.GetType().Equals(typeof(EuropeanCountry)) ? true : false;
+                user.FromEu = cbCountry.SelectedItem.GetType().Equals(typeof(EuropeanCountry));
             }
             //UpdateUi("update");
             MessageBox.Show("Updated successfull", "Info");
