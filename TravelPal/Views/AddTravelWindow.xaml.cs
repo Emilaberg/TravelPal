@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TravelPal.Classes;
+using TravelPal.Managers;
 
 namespace TravelPal.Views
 {
@@ -19,9 +21,24 @@ namespace TravelPal.Views
     /// </summary>
     public partial class AddTravelWindow : Window
     {
+        Travel travel;
+        public AddTravelWindow(int userId, int travelId)
+        {
+            
+            InitializeComponent();
+            travel = TravelManager.GetSpecificTravel(userId, travelId);
+            InitUi();
+        }
         public AddTravelWindow()
         {
+
             InitializeComponent();
+            
+        }
+
+        private void InitUi()
+        {
+            
         }
     }
 }

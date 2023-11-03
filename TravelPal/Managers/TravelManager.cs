@@ -54,5 +54,18 @@ namespace TravelPal.Managers
             }
             return usersTravels;
         }
+
+        public static Travel GetSpecificTravel(int userId, int travelId)
+        {
+            List<Travel> usersTravels = GetUserTravel(userId);
+            foreach (Travel userTravel in usersTravels)
+            {
+                if(userTravel.TravelId == travelId)
+                {
+                    return userTravel;
+                }
+            }
+            return null;
+        }
     }
 }

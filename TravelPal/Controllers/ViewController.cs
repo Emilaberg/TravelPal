@@ -22,6 +22,10 @@ namespace TravelPal.Controllers
         {
             return new AddTravelWindow();
         }
+        public static AddTravelWindow EditTravelWindow(int userId, int travelId)
+        {
+            return new AddTravelWindow(userId, travelId);
+        }
 
         public static AdminPanelWindow AdminPanelWindow()
         {

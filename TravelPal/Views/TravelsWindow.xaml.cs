@@ -23,7 +23,7 @@ namespace TravelPal.Views
     /// </summary>
     public partial class TravelsWindow : Window
     {
-        IUser user = UserManager.SignedInUser;
+        IUser user = UserManager.SignedInUser!;
         public TravelsWindow()
         {
 
@@ -65,6 +65,28 @@ namespace TravelPal.Views
             UserManager.SignedInUser = null;
 
             ViewController.MainWindow().Show();
+            Close();
+        }
+
+        private void BtnAddTravel_Click(object sender, RoutedEventArgs e)
+        {
+            
+            ViewController.AddTravelWindow().Show();
+            Close();
+        }
+
+        private void BtnTravelDetails_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstUserTravels.SelectedItem == null)
+            {
+                MessageBox.Show("you need to select a travel to  edit");
+                return;
+            }
+
+            ListViewItem selectedItem = (ListViewItem)lstUserTravels.SelectedItem;
+            Travel selectedTravel = (Travel)selectedItem.Tag;
+
+            ViewController.EditTravelWindow(selectedTravel.UserId, selectedTravel.TravelId).Show();
             Close();
         }
     }
