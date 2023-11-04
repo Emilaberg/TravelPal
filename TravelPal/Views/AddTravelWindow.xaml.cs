@@ -68,8 +68,36 @@ namespace TravelPal.Views
 
             if (type == "Edit")
             {
+                //SET ALL BOXES TO READONLY
+                //Change all textboxes to isreadonly to false,
+                txtDestination.IsReadOnly = true;
+                cbCountry.IsEnabled = false;
+                txtAmountOfTravelers.IsReadOnly = true;
+                DateStartDate.IsEnabled = false;
+                DateEndDate.IsEnabled = false;
+                cbTypeOfTravel.IsEnabled = false;
+                txtNameOfItem.IsReadOnly = true;
+                txtQuantity.IsReadOnly = true;
+                cbxTravelDocument.IsEnabled = false;
 
+                //Sets packinglistitem to not selected
+                lstPackingList.IsEnabled = false;
+                BtnAddPackListItem.IsEnabled = false;
+
+                //Sets opacity to 0.5 //change opacity
+                txtDestination.Opacity = 0.5;
+                cbCountry.Opacity = 0.5;
+                txtAmountOfTravelers.Opacity = 0.5;
+                DateStartDate.Opacity = 0.5;
+                DateEndDate.Opacity = 0.5;
+                cbTypeOfTravel.Opacity = 0.5;
+                txtNameOfItem.Opacity = 0.5;
+                txtQuantity.Opacity = 0.5;
+                cbxTravelDocument.Opacity = 0.5;
+
+                //Gets the chosen travel
                 Travel travel = TravelManager.GetSpecificTravel(userId, travelId);
+                //adds all the info to the boxes for the specific travel
                 txtDestination.Text = travel.Destination;
                 cbCountry.SelectedIndex = (int)travel.Countries;
                 txtAmountOfTravelers.Text = travel.Travellers.ToString();
@@ -77,6 +105,7 @@ namespace TravelPal.Views
                 DateEndDate.SelectedDate = travel.EndDate;
                 cbTypeOfTravel.SelectedItem = travel.GetType();
 
+                //lägger till varje packinglist item från resan man valt och lägger till det i listview:n
                 foreach(IPackingListItem item in travel.PackingList)
                 {
                     if (item.GetType() == typeof(TravelDocument)) // Om typen av item är ett traveldocument så skapar jag ett traveldocument
@@ -101,10 +130,42 @@ namespace TravelPal.Views
                     }
                 }
 
+                //Shows the isEditing
+                BtnIsEditing.Visibility = Visibility.Visible;
+
+                //show the save edit button instead of the save button.
+                BtnSave.Visibility = Visibility.Hidden;
+                BtnEdit.Visibility = Visibility.Visible;
 
             }
             
+        }
+        private void BtnIsEditing_Click(object sender, RoutedEventArgs e)
+        {
+            //Change all textboxes to isreadonly to false,
+            txtDestination.IsReadOnly = false;
+            cbCountry.IsEnabled = true;
+            txtAmountOfTravelers.IsReadOnly = false;
+            DateStartDate.IsEnabled = true;
+            DateEndDate.IsEnabled = true;
+            cbTypeOfTravel.IsEnabled = true;
+            txtNameOfItem.IsReadOnly = false;
+            txtQuantity.IsReadOnly = false;
+            cbxTravelDocument.IsEnabled = true;
 
+            //Sets packinglistitem to not selected
+            lstPackingList.IsEnabled = true;
+            BtnAddPackListItem.IsEnabled = true;
+            //change opacity
+            txtDestination.Opacity = 1;
+            cbCountry.Opacity = 1;
+            txtAmountOfTravelers.Opacity = 1;
+            DateStartDate.Opacity = 1;
+            DateEndDate.Opacity = 1;
+            cbTypeOfTravel.Opacity = 1;
+            txtNameOfItem.Opacity = 1;
+            txtQuantity.Opacity = 1;
+            cbxTravelDocument.Opacity = 1;
         }
         //Updating the UI
         private void UpdateUi(string type)
@@ -245,5 +306,11 @@ namespace TravelPal.Views
 
             UpdateUi("clearUI");
         }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
