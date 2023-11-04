@@ -43,6 +43,7 @@ namespace TravelPal.Views
             txtUsername.Clear();
             txtPassword.Clear();
 
+            lblUsername.Content = user.Username;
             txtUsername.Text = user.Username;
             txtPassword.Text = user.Password;
 
@@ -149,6 +150,14 @@ namespace TravelPal.Views
             }
         }
 
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            UserManager.SignedInUser = null;
 
+            ViewController.MainWindow().Show();
+            Close();
+        }
+
+        
     }
 }

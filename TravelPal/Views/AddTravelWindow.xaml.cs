@@ -41,7 +41,6 @@ namespace TravelPal.Views
 
             InitializeComponent();
             UpdateUi("");
-            
         }
         //To go back
         private void BtnGoBack_Click(object sender, RoutedEventArgs e)
@@ -373,6 +372,20 @@ namespace TravelPal.Views
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             UpdateUi("Cancel");
+        }
+
+        private void BtnAccount_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.AccountWindow().Show();
+            Close();
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            UserManager.SignedInUser = null;
+
+            ViewController.MainWindow().Show();
+            Close();
         }
     }
 }
