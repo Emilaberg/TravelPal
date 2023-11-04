@@ -51,7 +51,16 @@ namespace TravelPal.Views
 
         private void UpdateUi(string type)
         {
-            
+            lstUserTravels.Items.Clear();
+            //hämtar alla users travels och lägger in dom i travelslist
+            List<Travel> usersTravels = TravelManager.GetUserTravel(user.Id);
+            foreach (Travel travel in usersTravels)
+            {
+                ListViewItem userTravel = new();
+                userTravel.Content = travel.GetInfo();
+                userTravel.Tag = travel;
+                lstUserTravels.Items.Add(userTravel);
+            }
         }
 
         private void BtnAccount_Click(object sender, RoutedEventArgs e)
@@ -88,6 +97,18 @@ namespace TravelPal.Views
 
             ViewController.EditTravelWindow(selectedTravel.UserId, selectedTravel.TravelId).Show();
             Close();
+        }
+
+        private void btnRemoveTravel_Click(object sender, RoutedEventArgs e)
+        {
+            ListViewItem selectedItem = (ListViewItem)lstUserTravels.SelectedItem;
+            Travel selectedTravel = (Travel)selectedItem.Tag;
+            //lägg i travelmanager
+            if (TravelManager.RemoveSpecificTravel(UserManager.SignedInUser!.Id, selectedTravel.TravelId))
+            {
+                UpdateUi("update");
+            }
+            
         }
     }
 }

@@ -79,7 +79,7 @@ namespace TravelPal.Views
 
                 foreach(IPackingListItem item in travel.PackingList)
                 {
-                    if (item.GetType() == typeof(TravelDocument))
+                    if (item.GetType() == typeof(TravelDocument)) // Om typen av item är ett traveldocument så skapar jag ett traveldocument
                     {
                         bool isRequired = cbxRequired.IsChecked == true ? true : false;
                         ListViewItem newPackingListItem = new();
@@ -181,7 +181,8 @@ namespace TravelPal.Views
         }
         //UI METHODS//
 
-
+        // FRONT END //
+        
         // when adding a packing list item 
         private void BtnAddPackListItem_Click(object sender, RoutedEventArgs e)
         {
@@ -216,6 +217,8 @@ namespace TravelPal.Views
             lstPackingList.Items.Remove(lstPackingList.SelectedItem);
         }
 
+        // FRONT END //
+
         //for saving a trip
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -231,13 +234,13 @@ namespace TravelPal.Views
             if ((string)cbTypeOfTravel.SelectedItem == "Vacation")
             {
                 bool allInclusive = cbxAllInclusiv.IsChecked == true ? true : false;
-                Vacation newVacation = new(allInclusive, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
-                TravelManager.Travels!.Add(newVacation);
+                TravelManager.AddVacation(allInclusive, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
+                
             }
             else
             {
-                WorkTrip newWorkTrip = new(txtMeetingDetails.Text, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
-                TravelManager.Travels!.Add(newWorkTrip);
+                TravelManager.AddWorkTrip(txtMeetingDetails.Text, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
+                
             }
 
             UpdateUi("clearUI");

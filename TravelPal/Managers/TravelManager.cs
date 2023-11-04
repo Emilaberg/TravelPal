@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TravelPal.Classes;
 using TravelPal.Enums;
 using TravelPal.Interfaces;
@@ -68,7 +69,43 @@ namespace TravelPal.Managers
                     return userTravel;
                 }
             }
-            return null;
+            return null!;
+        }
+
+        public static bool RemoveSpecificTravel(int userId, int travelId)
+        {
+            Travels!.RemoveAll(t => t.UserId == userId && t.TravelId == travelId);
+            return true;
+        }
+
+        public static bool AddVacation(bool allInclusive, string destination, object countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int userId)
+        {
+            try
+            {
+                Vacation newVacation = new(allInclusive, destination, countries, travellers, packingList, startDate, endDate, userId);
+                Travels!.Add(newVacation);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.StackTrace);
+                return false;
+            }
+        }
+
+        public static bool AddWorkTrip(string meetingDetails, string destination, object countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int userId)
+        {
+            try
+            {
+                WorkTrip newWorkTrip = new(meetingDetails, destination, countries, travellers, packingList, startDate, endDate, userId);
+                Travels!.Add(newWorkTrip);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.StackTrace);
+                return false;
+            }
         }
     }
 }
