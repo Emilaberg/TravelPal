@@ -101,6 +101,12 @@ namespace TravelPal.Views
 
         private void btnRemoveTravel_Click(object sender, RoutedEventArgs e)
         {
+            if (lstUserTravels.SelectedItem == null)
+            {
+                MessageBox.Show("you need to select a travel to Remove");
+                return;
+            }
+
             ListViewItem selectedItem = (ListViewItem)lstUserTravels.SelectedItem;
             Travel selectedTravel = (Travel)selectedItem.Tag;
             //lägg i travelmanager

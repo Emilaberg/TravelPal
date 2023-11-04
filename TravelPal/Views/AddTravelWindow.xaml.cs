@@ -26,20 +26,22 @@ namespace TravelPal.Views
     {
         int userId;
         int travelId;
+        bool editing = false;
         public AddTravelWindow(int userId, int travelId)
         {
             InitializeComponent();
             this.userId = userId;
             this.travelId = travelId;
-            InitUi("Edit");
+            UpdateUi("IsEditing");
+            editing = true;
         }
 
         public AddTravelWindow()
         {
 
             InitializeComponent();
-            InitUi("");
-
+            UpdateUi("");
+            
         }
         //To go back
         private void BtnGoBack_Click(object sender, RoutedEventArgs e)
@@ -48,7 +50,7 @@ namespace TravelPal.Views
             Close();
         }
         //UI METHODS//
-        private void InitUi(string type)
+        private void UpdateUi(string type)
         {
             //Fyller upp comboboxen för countries.
             cbCountry.Items.Add("Select a country");
@@ -66,35 +68,52 @@ namespace TravelPal.Views
             cbTypeOfTravel.Items.Add("Vacation");
             cbTypeOfTravel.Items.Add("Work Trip");
 
-            if (type == "Edit")
+                        
+            //Clearer all comboboxen
+            txtDestination.Text = "";
+            cbCountry.SelectedIndex = 0;
+            txtAmountOfTravelers.Text = "";
+            DateStartDate.Text = "";
+            DateEndDate.Text = "";
+            cbTypeOfTravel.SelectedIndex = 0;
+            cbxAllInclusiv.IsChecked = false;
+            cbxMeetingDetails.IsChecked = false;
+            txtMeetingDetails.Text = "";
+            lstPackingList.Items.Clear();
+
+            //SET ALL BOXES TO READONLY
+            //Change all textboxes to isreadonly to false,
+            txtDestination.IsReadOnly = true;
+            cbCountry.IsEnabled = false;
+            txtAmountOfTravelers.IsReadOnly = true;
+            DateStartDate.IsEnabled = false;
+            DateEndDate.IsEnabled = false;
+            cbTypeOfTravel.IsEnabled = false;
+            txtNameOfItem.IsReadOnly = true;
+            txtQuantity.IsReadOnly = true;
+            cbxTravelDocument.IsEnabled = false;
+            BtnSaveEdit.IsEnabled = false;
+            BtnCancel.IsEnabled = false;
+
+            //Sets packinglistitem to not selected
+            lstPackingList.IsEnabled = false;
+            BtnAddPackListItem.IsEnabled = false;
+
+            //Sets opacity to 0.5 //change opacity
+            txtDestination.Opacity = 0.5;
+            cbCountry.Opacity = 0.5;
+            txtAmountOfTravelers.Opacity = 0.5;
+            DateStartDate.Opacity = 0.5;
+            DateEndDate.Opacity = 0.5;
+            cbTypeOfTravel.Opacity = 0.5;
+            txtNameOfItem.Opacity = 0.5;
+            txtQuantity.Opacity = 0.5;
+            cbxTravelDocument.Opacity = 0.5;
+            BtnSaveEdit.Opacity = 0.5;
+            BtnCancel.Opacity = 0.5;
+
+            if (type == "IsEditing" || editing == true)
             {
-                //SET ALL BOXES TO READONLY
-                //Change all textboxes to isreadonly to false,
-                txtDestination.IsReadOnly = true;
-                cbCountry.IsEnabled = false;
-                txtAmountOfTravelers.IsReadOnly = true;
-                DateStartDate.IsEnabled = false;
-                DateEndDate.IsEnabled = false;
-                cbTypeOfTravel.IsEnabled = false;
-                txtNameOfItem.IsReadOnly = true;
-                txtQuantity.IsReadOnly = true;
-                cbxTravelDocument.IsEnabled = false;
-
-                //Sets packinglistitem to not selected
-                lstPackingList.IsEnabled = false;
-                BtnAddPackListItem.IsEnabled = false;
-
-                //Sets opacity to 0.5 //change opacity
-                txtDestination.Opacity = 0.5;
-                cbCountry.Opacity = 0.5;
-                txtAmountOfTravelers.Opacity = 0.5;
-                DateStartDate.Opacity = 0.5;
-                DateEndDate.Opacity = 0.5;
-                cbTypeOfTravel.Opacity = 0.5;
-                txtNameOfItem.Opacity = 0.5;
-                txtQuantity.Opacity = 0.5;
-                cbxTravelDocument.Opacity = 0.5;
-
                 //Gets the chosen travel
                 Travel travel = TravelManager.GetSpecificTravel(userId, travelId);
                 //adds all the info to the boxes for the specific travel
@@ -106,7 +125,7 @@ namespace TravelPal.Views
                 cbTypeOfTravel.SelectedItem = travel.GetType();
 
                 //lägger till varje packinglist item från resan man valt och lägger till det i listview:n
-                foreach(IPackingListItem item in travel.PackingList)
+                foreach (IPackingListItem item in travel.PackingList)
                 {
                     if (item.GetType() == typeof(TravelDocument)) // Om typen av item är ett traveldocument så skapar jag ett traveldocument
                     {
@@ -131,16 +150,22 @@ namespace TravelPal.Views
                 }
 
                 //Shows the isEditing
-                BtnIsEditing.Visibility = Visibility.Visible;
+                BtnEditTravel.Visibility = Visibility.Visible;
 
                 //show the save edit button instead of the save button.
                 BtnSave.Visibility = Visibility.Hidden;
-                BtnEdit.Visibility = Visibility.Visible;
+                BtnSaveEdit.Visibility = Visibility.Visible;
 
+                if (type == "SaveEdit" || type == "Cancel" || type == "Save")
+                {
+                    BtnEditTravel.BorderBrush = new SolidColorBrush(Colors.LimeGreen);
+                    BtnSaveEdit.IsEnabled = false;
+                    BtnEditTravel.IsEnabled = true;
+                }
             }
             
         }
-        private void BtnIsEditing_Click(object sender, RoutedEventArgs e)
+        private void BtnEditTravel_Click(object sender, RoutedEventArgs e)
         {
             //Change all textboxes to isreadonly to false,
             txtDestination.IsReadOnly = false;
@@ -152,6 +177,9 @@ namespace TravelPal.Views
             txtNameOfItem.IsReadOnly = false;
             txtQuantity.IsReadOnly = false;
             cbxTravelDocument.IsEnabled = true;
+            BtnSaveEdit.IsEnabled = true;
+            BtnEditTravel.Focusable = false;
+            BtnCancel.IsEnabled = true;
 
             //Sets packinglistitem to not selected
             lstPackingList.IsEnabled = true;
@@ -166,24 +194,15 @@ namespace TravelPal.Views
             txtNameOfItem.Opacity = 1;
             txtQuantity.Opacity = 1;
             cbxTravelDocument.Opacity = 1;
+            BtnSaveEdit.Opacity = 1;
+            BtnCancel.Opacity = 1;
+            BtnSaveEdit.BorderBrush = new SolidColorBrush(Colors.LimeGreen);
+            BtnEditTravel.BorderBrush = new SolidColorBrush(Colors.Orange);
+            
         }
         //Updating the UI
-        private void UpdateUi(string type)
-        {
-            
-            if(type == "clearUI")
-            {
-                txtDestination.Text = "";
-                cbCountry.SelectedIndex = 0;
-                txtAmountOfTravelers.Text = "";
-                DateStartDate.Text = "";
-                DateEndDate.Text = "";
-                cbTypeOfTravel.SelectedIndex = 0;
-                cbxAllInclusiv.IsChecked = false;
-                cbxMeetingDetails.IsChecked = false;
-                txtMeetingDetails.Text = "";
-            }
-        }
+        
+
         //for UI
         private void cbTypeOfTravel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -303,11 +322,11 @@ namespace TravelPal.Views
                 TravelManager.AddWorkTrip(txtMeetingDetails.Text, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
                 
             }
-
-            UpdateUi("clearUI");
+            
+            UpdateUi("Save");
         }
 
-        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        private void BtnSaveEdit_Click(object sender, RoutedEventArgs e)
         {
             //Get the specific travel
             Travel travel = TravelManager.GetSpecificTravel(userId, travelId);
@@ -346,8 +365,13 @@ namespace TravelPal.Views
                 workTrip.EndDate = (DateTime)DateEndDate.SelectedDate;
                 
             }
-            InitUi("Edit");
+            
+            UpdateUi("SaveEdit");
         }
 
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateUi("Cancel");
+        }
     }
 }
