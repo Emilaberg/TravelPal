@@ -99,7 +99,7 @@ namespace TravelPal.Views
                 Travel travel = TravelManager.GetSpecificTravel(userId, travelId);
                 //adds all the info to the boxes for the specific travel
                 txtDestination.Text = travel.Destination;
-                cbCountry.SelectedIndex = (int)travel.Countries;
+                cbCountry.SelectedItem = travel.Countries;
                 txtAmountOfTravelers.Text = travel.Travellers.ToString();
                 DateStartDate.SelectedDate = travel.StartDate;
                 DateEndDate.SelectedDate = travel.EndDate;
@@ -309,7 +309,44 @@ namespace TravelPal.Views
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
+            //Get the specific travel
+            Travel travel = TravelManager.GetSpecificTravel(userId, travelId);
+            //
+            List<IPackingListItem> packingListItems = new();
+            foreach (ListViewItem packingListItem in lstPackingList.Items)
+            {
+                IPackingListItem item = (IPackingListItem)packingListItem.Tag;
+                packingListItems.Add(item);
+            }
+            //if the type of travel is a vacation, then I want to update that vacation.
+            if (travel.GetType() == typeof(Vacation))
+            {
+                Vacation vacation = (Vacation)travel;
+                //TravelManager.AddVacation(allInclusive, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
+                bool allInclusive = cbxAllInclusiv.IsChecked == true ? true : false;
+                vacation.AllInclusive = allInclusive;
+                vacation.Destination = txtDestination.Text;
+                vacation.Countries = (object)cbCountry.SelectedItem;
+                vacation.Travellers = int.Parse(txtAmountOfTravelers.Text);
+                vacation.PackingList = packingListItems;
+                vacation.StartDate = (DateTime)DateStartDate.SelectedDate;
+                vacation.EndDate = (DateTime)DateEndDate.SelectedDate;
 
+            }
+            else//if the type of travel is a Worktrip, then I want to update that vacation.
+            {
+                //TravelManager.AddWorkTrip(txtMeetingDetails.Text, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
+                WorkTrip workTrip = (WorkTrip)travel;
+                workTrip.MeetingDetails = txtMeetingDetails.Text;
+                workTrip.Destination = txtDestination.Text;
+                workTrip.Countries = (object)cbCountry.SelectedItem;
+                workTrip.Travellers = int.Parse(txtAmountOfTravelers.Text);
+                workTrip.PackingList = packingListItems;
+                workTrip.StartDate = (DateTime)DateStartDate.SelectedDate;
+                workTrip.EndDate = (DateTime)DateEndDate.SelectedDate;
+                
+            }
+            InitUi("Edit");
         }
 
     }
