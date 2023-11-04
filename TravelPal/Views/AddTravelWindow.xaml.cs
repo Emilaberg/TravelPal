@@ -24,15 +24,14 @@ namespace TravelPal.Views
     /// </summary>
     public partial class AddTravelWindow : Window
     {
-        Travel travel;
-        
+        int userId;
+        int travelId;
         public AddTravelWindow(int userId, int travelId)
         {
-            
             InitializeComponent();
+            this.userId = userId;
+            this.travelId = travelId;
             InitUi("Edit");
-            travel = TravelManager.GetSpecificTravel(userId, travelId);
-            
         }
 
         public AddTravelWindow()
@@ -69,7 +68,40 @@ namespace TravelPal.Views
 
             if (type == "Edit")
             {
-                
+
+                Travel travel = TravelManager.GetSpecificTravel(userId, travelId);
+                txtDestination.Text = travel.Destination;
+                cbCountry.SelectedIndex = (int)travel.Countries;
+                txtAmountOfTravelers.Text = travel.Travellers.ToString();
+                DateStartDate.SelectedDate = travel.StartDate;
+                DateEndDate.SelectedDate = travel.EndDate;
+                cbTypeOfTravel.SelectedItem = travel.GetType();
+
+                foreach(IPackingListItem item in travel.PackingList)
+                {
+                    if (item.GetType() == typeof(TravelDocument))
+                    {
+                        bool isRequired = cbxRequired.IsChecked == true ? true : false;
+                        ListViewItem newPackingListItem = new();
+                        TravelDocument newTravelDocument = new(txtNameOfItem.Text, isRequired);
+                        newPackingListItem.Content = newTravelDocument.GetInfo();
+                        newPackingListItem.Tag = newTravelDocument;
+                        lstPackingList.Items.Add(newPackingListItem);
+
+                    }
+                    else // annars vill jag skapa ett otherItem
+                    {
+                        int.TryParse(txtQuantity.Text, out int res); //CHECKA DETTA
+
+                        ListViewItem newPackingListItem = new();
+                        OtherItem newItem = new(txtNameOfItem.Text, res);
+                        newPackingListItem.Content = newItem.GetInfo();
+                        newPackingListItem.Tag = newItem;
+                        lstPackingList.Items.Add(newPackingListItem);
+                    }
+                }
+
+
             }
             
 

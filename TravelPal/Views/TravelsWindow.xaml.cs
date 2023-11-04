@@ -79,7 +79,7 @@ namespace TravelPal.Views
         {
             if (lstUserTravels.SelectedItem == null)
             {
-                MessageBox.Show("you need to select a travel to  edit");
+                MessageBox.Show("you need to select a travel to edit");
                 return;
             }
 
