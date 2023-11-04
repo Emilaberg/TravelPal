@@ -30,19 +30,26 @@ namespace TravelPal.Views
         {
             
             InitializeComponent();
-            InitUi();
+            InitUi("Edit");
             travel = TravelManager.GetSpecificTravel(userId, travelId);
             
         }
+
         public AddTravelWindow()
         {
 
             InitializeComponent();
-            InitUi();
+            InitUi("");
 
         }
-
-        private void InitUi()
+        //To go back
+        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.TravelsWindow().Show();
+            Close();
+        }
+        //UI METHODS//
+        private void InitUi(string type)
         {
             //Fyller upp comboboxen för countries.
             cbCountry.Items.Add("Select a country");
@@ -60,8 +67,14 @@ namespace TravelPal.Views
             cbTypeOfTravel.Items.Add("Vacation");
             cbTypeOfTravel.Items.Add("Work Trip");
 
-        }
+            if (type == "Edit")
+            {
+                
+            }
+            
 
+        }
+        //Updating the UI
         private void UpdateUi(string type)
         {
             
@@ -78,39 +91,7 @@ namespace TravelPal.Views
                 txtMeetingDetails.Text = "";
             }
         }
-
-
-        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
-        {
-            ViewController.TravelsWindow().Show();
-            Close();
-        }
-
-        private void BtnSave_Click(object sender, RoutedEventArgs e)
-        {
-            //skapa en ny Travel och lägg in all data från det man skrivit in
-            //skapa en Ipackinglista med alla listitems från packinglist och lägg till den i travel klassen
-            List<IPackingListItem> packingListItems = new();
-            foreach (ListViewItem packingListItem in lstPackingList.Items)
-            {
-                IPackingListItem item = (IPackingListItem)packingListItem.Tag;
-                packingListItems.Add(item);
-            }
-
-            if ((string)cbTypeOfTravel.SelectedItem == "Vacation")
-            {
-                bool allInclusive = cbxAllInclusiv.IsChecked == true ? true : false;
-                Vacation newVacation = new(allInclusive, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
-                TravelManager.Travels!.Add(newVacation);
-            }else
-            {
-                WorkTrip newWorkTrip = new(txtMeetingDetails.Text,txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
-                TravelManager.Travels!.Add(newWorkTrip);
-            }
-            
-            UpdateUi("clearUI");
-        }
-
+        //for UI
         private void cbTypeOfTravel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if((string)cbTypeOfTravel.SelectedItem == "Vacation") 
@@ -137,12 +118,12 @@ namespace TravelPal.Views
                 
             }
         }
-
+        //for UI
         private void cbxMeetingDetails_Checked(object sender, RoutedEventArgs e)
         {
             txtMeetingDetails.Visibility = Visibility.Visible;
         }
-
+        //for UI
         private void cbxTravelDocument_Checked(object sender, RoutedEventArgs e)
         {
             //Om den är checked då vill jag gömma quantity label och textbox och visa required label och checkbox
@@ -153,7 +134,7 @@ namespace TravelPal.Views
             lblRequired.Visibility = Visibility.Visible;
             cbxRequired.Visibility = Visibility.Visible;
         }
-
+        //for UI
         private void cbxTravelDocument_UnChecked(object sender, RoutedEventArgs e)
         {
             //om man uncheckar den vill jag gömma den och unchecka required
@@ -166,7 +147,10 @@ namespace TravelPal.Views
 
             
         }
+        //UI METHODS//
 
+
+        // when adding a packing list item 
         private void BtnAddPackListItem_Click(object sender, RoutedEventArgs e)
         {
             // om det är ett traveldocument då vill jag skapa ett travel document
@@ -194,9 +178,37 @@ namespace TravelPal.Views
             cbxTravelDocument.IsChecked = false;
         }
 
+        //To remove an packinglist item 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             lstPackingList.Items.Remove(lstPackingList.SelectedItem);
+        }
+
+        //for saving a trip
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //skapa en ny Travel och lägg in all data från det man skrivit in
+            //skapa en Ipackinglista med alla listitems från packinglist och lägg till den i travel klassen
+            List<IPackingListItem> packingListItems = new();
+            foreach (ListViewItem packingListItem in lstPackingList.Items)
+            {
+                IPackingListItem item = (IPackingListItem)packingListItem.Tag;
+                packingListItems.Add(item);
+            }
+
+            if ((string)cbTypeOfTravel.SelectedItem == "Vacation")
+            {
+                bool allInclusive = cbxAllInclusiv.IsChecked == true ? true : false;
+                Vacation newVacation = new(allInclusive, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
+                TravelManager.Travels!.Add(newVacation);
+            }
+            else
+            {
+                WorkTrip newWorkTrip = new(txtMeetingDetails.Text, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
+                TravelManager.Travels!.Add(newWorkTrip);
+            }
+
+            UpdateUi("clearUI");
         }
     }
 }
