@@ -46,7 +46,7 @@ namespace TravelPal.Views
             txtUsername.Text = user.Username;
             txtPassword.Text = user.Password;
 
-            cbCountry.SelectedIndex = (int)user.Location;
+            cbCountry.SelectedItem = user.Location;
 
 
             if (user.FromEu.Equals(true))

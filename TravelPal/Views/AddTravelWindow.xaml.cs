@@ -81,39 +81,41 @@ namespace TravelPal.Views
             txtMeetingDetails.Text = "";
             lstPackingList.Items.Clear();
 
-            //SET ALL BOXES TO READONLY
-            //Change all textboxes to isreadonly to false,
-            txtDestination.IsReadOnly = true;
-            cbCountry.IsEnabled = false;
-            txtAmountOfTravelers.IsReadOnly = true;
-            DateStartDate.IsEnabled = false;
-            DateEndDate.IsEnabled = false;
-            cbTypeOfTravel.IsEnabled = false;
-            txtNameOfItem.IsReadOnly = true;
-            txtQuantity.IsReadOnly = true;
-            cbxTravelDocument.IsEnabled = false;
-            BtnSaveEdit.IsEnabled = false;
-            BtnCancel.IsEnabled = false;
-
-            //Sets packinglistitem to not selected
-            lstPackingList.IsEnabled = false;
-            BtnAddPackListItem.IsEnabled = false;
-
-            //Sets opacity to 0.5 //change opacity
-            txtDestination.Opacity = 0.5;
-            cbCountry.Opacity = 0.5;
-            txtAmountOfTravelers.Opacity = 0.5;
-            DateStartDate.Opacity = 0.5;
-            DateEndDate.Opacity = 0.5;
-            cbTypeOfTravel.Opacity = 0.5;
-            txtNameOfItem.Opacity = 0.5;
-            txtQuantity.Opacity = 0.5;
-            cbxTravelDocument.Opacity = 0.5;
-            BtnSaveEdit.Opacity = 0.5;
-            BtnCancel.Opacity = 0.5;
+                        
 
             if (type == "IsEditing" || editing == true)
             {
+                //SET ALL BOXES TO READONLY
+                //Change all textboxes to isreadonly to false,
+                txtDestination.IsReadOnly = true;
+                cbCountry.IsEnabled = false;
+                txtAmountOfTravelers.IsReadOnly = true;
+                DateStartDate.IsEnabled = false;
+                DateEndDate.IsEnabled = false;
+                cbTypeOfTravel.IsEnabled = false;
+                txtNameOfItem.IsReadOnly = true;
+                txtQuantity.IsReadOnly = true;
+                cbxTravelDocument.IsEnabled = false;
+                BtnSaveEdit.IsEnabled = false;
+                BtnCancel.IsEnabled = false;
+
+                //Sets packinglistitem to not selected
+                lstPackingList.IsEnabled = false;
+                BtnAddPackListItem.IsEnabled = false;
+
+                //Sets opacity to 0.5 //change opacity
+                txtDestination.Opacity = 0.5;
+                cbCountry.Opacity = 0.5;
+                txtAmountOfTravelers.Opacity = 0.5;
+                DateStartDate.Opacity = 0.5;
+                DateEndDate.Opacity = 0.5;
+                cbTypeOfTravel.Opacity = 0.5;
+                txtNameOfItem.Opacity = 0.5;
+                txtQuantity.Opacity = 0.5;
+                cbxTravelDocument.Opacity = 0.5;
+                BtnSaveEdit.Opacity = 0.5;
+                BtnCancel.Opacity = 0.5;
+
                 //Gets the chosen travel
                 Travel travel = TravelManager.GetSpecificTravel(userId, travelId);
                 //adds all the info to the boxes for the specific travel
@@ -129,9 +131,9 @@ namespace TravelPal.Views
                 {
                     if (item.GetType() == typeof(TravelDocument)) // Om typen av item är ett traveldocument så skapar jag ett traveldocument
                     {
-                        bool isRequired = cbxRequired.IsChecked == true ? true : false;
+                        TravelDocument travelDocument = (TravelDocument)item;
                         ListViewItem newPackingListItem = new();
-                        TravelDocument newTravelDocument = new(txtNameOfItem.Text, isRequired);
+                        TravelDocument newTravelDocument = new(travelDocument.Name, travelDocument.Required);
                         newPackingListItem.Content = newTravelDocument.GetInfo();
                         newPackingListItem.Tag = newTravelDocument;
                         lstPackingList.Items.Add(newPackingListItem);
@@ -139,10 +141,9 @@ namespace TravelPal.Views
                     }
                     else // annars vill jag skapa ett otherItem
                     {
-                        int.TryParse(txtQuantity.Text, out int res); //CHECKA DETTA
-
+                        OtherItem otherItem = (OtherItem)item;
                         ListViewItem newPackingListItem = new();
-                        OtherItem newItem = new(txtNameOfItem.Text, res);
+                        OtherItem newItem = new(otherItem.Name, otherItem.Quantity);
                         newPackingListItem.Content = newItem.GetInfo();
                         newPackingListItem.Tag = newItem;
                         lstPackingList.Items.Add(newPackingListItem);

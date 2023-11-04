@@ -36,7 +36,7 @@ namespace TravelPal.Views
         private void InitUi()
         {
             txtUsername.Content = user.Username;
-            txtWelcome.Content = $"Welcome Back {user.Username} {user.Id}";
+            txtWelcome.Content = $"Welcome Back {user.Username}";
 
             //hämtar alla users travels och lägger in dom i travelslist
             List<Travel> usersTravels = TravelManager.GetUserTravel(user.Id);
