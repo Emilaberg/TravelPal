@@ -116,5 +116,11 @@ namespace TravelPal.Views
             }
             
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.HelpView("travel").Show();
+            Close();
+        }
     }
 }

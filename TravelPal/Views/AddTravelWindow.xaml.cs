@@ -482,6 +482,10 @@ namespace TravelPal.Views
 
         }
 
-        
+        private void BtnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.HelpView("addTravel").Show();
+            Close();
+        }
     }
 }

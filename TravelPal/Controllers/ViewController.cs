@@ -41,6 +41,10 @@ namespace TravelPal.Controllers
         {
             return new TravelsWindow();
         }
+        public static HelpView HelpView(string from)
+        {
+            return new HelpView(from);
+        }
 
     }
 }

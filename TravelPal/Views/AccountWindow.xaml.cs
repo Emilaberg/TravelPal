@@ -158,6 +158,10 @@ namespace TravelPal.Views
             Close();
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.HelpView("account").Show();
+            Close();
+        }
     }
 }

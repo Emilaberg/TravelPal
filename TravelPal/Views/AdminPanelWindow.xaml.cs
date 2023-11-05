@@ -65,5 +65,11 @@ namespace TravelPal.Views
             ViewController.AccountWindow().Show();
             Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewController.HelpView("admin").Show();
+            Close();
+        }
     }
 }

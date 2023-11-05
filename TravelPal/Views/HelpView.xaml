@@ -1,0 +1,38 @@
+﻿<Window x:Class="TravelPal.Views.HelpView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelPal.Views"
+        mc:Ignorable="d"
+        Title="HelpView" Height="300" Width="350" Background="#7B68EE">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Name="BtnGoBack" Content="Close" Grid.Column="3" Background="#000022" BorderBrush="#000022" Foreground="#F5FFFA" Width="40" Height="20" Click="BtnGoBack_Click"/>
+        <Label Content="TRAVEL PAL" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#F5FFFA" FontSize="20"/>
+
+        <TextBlock Grid.Column="0" TextWrapping="Wrap" FontSize="8" Foreground="#000022" FontWeight="DemiBold" TextAlignment="Center" Grid.ColumnSpan="3" Width="320" Padding="5 0 5 0" Grid.Row="1" Text="TravelPal was created 2023 to help travelers to coordinate their travels in a great fashionThanks to Our great Developers We have created TravelPal as a native App to windows!"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" FontSize="18" Foreground="#000022" FontWeight="DemiBold" Text="How To Use" HorizontalAlignment="Center"/>
+        <TextBlock Margin="10 0 0 10" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" VerticalAlignment="Top" TextWrapping="Wrap"  FontSize="8" Foreground="#000022" FontWeight="DemiBold" Text="You can view you created travels on the homescreen, to go the home screen you press The name in the top left corner." />
+        <TextBlock Margin="15 25 0 10" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" VerticalAlignment="Center" TextWrapping="Wrap"  FontSize="8" Foreground="#000022" FontWeight="DemiBold" Text="- You can add a new travel by clicking the Add Travel button. " />
+        <TextBlock Margin="10 0 0 10" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="8" Foreground="#000022" FontWeight="DemiBold" Text="To edit a or Remove a Travel Destination, you simply click the Remove or Edit buttons. Note:" />
+        <TextBlock Margin="15 8 0 10" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" VerticalAlignment="Center" TextWrapping="Wrap"  FontSize="8" Foreground="#000022" FontWeight="DemiBold" Text="- You need To Select a travel destination before clicking the Remov or Edit buttons." />
+        <TextBlock Margin="10 0 0 10" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="8" Foreground="#000022" FontWeight="DemiBold" Text="To view your account, press the Green Account button in the top right corner, left to the logout button" />
+        <TextBlock Margin="10 0 0 10" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="6" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="8" Foreground="#000022" FontWeight="DemiBold" Text="To logout from your account, simply press the logout Button and you'll be logged out and redirect to the login window." />
+        
+    </Grid>
+</Window>
