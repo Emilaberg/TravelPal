@@ -470,6 +470,7 @@ namespace TravelPal.Views
             //    return;
             //}
 
+            //
             if(lstPackingList.Items.Count > 0)
             {
                 for(int i = 0; i < lstPackingList.Items.Count; i++)
