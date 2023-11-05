@@ -131,20 +131,21 @@ namespace TravelPal.Views
                     if (item.GetType() == typeof(TravelDocument)) // Om typen av item är ett traveldocument så skapar jag ett traveldocument
                     {
                         TravelDocument travelDocument = (TravelDocument)item;
-                        ListViewItem newPackingListItem = new();
-                        TravelDocument newTravelDocument = new(travelDocument.Name, travelDocument.Required);
-                        newPackingListItem.Content = newTravelDocument.GetInfo();
-                        newPackingListItem.Tag = newTravelDocument;
-                        lstPackingList.Items.Add(newPackingListItem);
-
+                        if(travelDocument.Name.ToLower() != "passport")
+                        {
+                            ListViewItem newPackingListItem = new();
+                            newPackingListItem.Content = travelDocument.GetInfo();
+                            newPackingListItem.Tag = travelDocument;
+                            lstPackingList.Items.Add(newPackingListItem);
+                        }
+                        
                     }
                     else // annars vill jag skapa ett otherItem
                     {
                         OtherItem otherItem = (OtherItem)item;
                         ListViewItem newPackingListItem = new();
-                        OtherItem newItem = new(otherItem.Name, otherItem.Quantity);
-                        newPackingListItem.Content = newItem.GetInfo();
-                        newPackingListItem.Tag = newItem;
+                        newPackingListItem.Content = otherItem.GetInfo();
+                        newPackingListItem.Tag = otherItem;
                         lstPackingList.Items.Add(newPackingListItem);
                     }
                 }
@@ -266,6 +267,14 @@ namespace TravelPal.Views
         // when adding a packing list item 
         private void BtnAddPackListItem_Click(object sender, RoutedEventArgs e)
         {
+            //om namnet på item är passport 
+                //skriv att man passport är redan inlagt
+            if(txtNameOfItem.Text.ToLower() == "passport")
+            {
+                MessageBox.Show("Passport will be added when selecting country, If you wish to add more passport, add passport as Extra passports and choose quantity.", "Warning");
+                return;
+            }
+
             // om det är ett traveldocument då vill jag skapa ett travel document
             //då vill jag skapa ett TravelDocument
             if (cbxTravelDocument.IsChecked == true)
@@ -289,6 +298,12 @@ namespace TravelPal.Views
                 lstPackingList.Items.Add(newPackingListItem);
             }
             cbxTravelDocument.IsChecked = false;
+            txtNameOfItem.Text = "";
+            txtQuantity.Text = "";
+            cbxTravelDocument.IsChecked = false;
+            cbxRequired.IsChecked = false;
+
+
         }
 
         //To remove an packinglist item 
@@ -302,6 +317,22 @@ namespace TravelPal.Views
         //for saving a trip
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+            string meetingDetails = cbxAllInclusiv.IsChecked == true ? txtMeetingDetails.Text : "";
+
+            bool success = int.TryParse(txtAmountOfTravelers.Text, out int res);
+            if (success)
+            {
+                if (!ValidationController.ValidateAllFields(txtDestination.Text, cbCountry.SelectedItem.ToString(), res, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, cbTypeOfTravel.SelectedItem.ToString(), meetingDetails))
+                {
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("amount of travelers need to be a number", "warning");
+                return;
+            }
+
             //skapa en ny Travel och lägg in all data från det man skrivit in
             //skapa en Ipackinglista med alla listitems från packinglist och lägg till den i travel klassen
             List<IPackingListItem> packingListItems = new();
@@ -387,5 +418,70 @@ namespace TravelPal.Views
             ViewController.MainWindow().Show();
             Close();
         }
+
+        private void CbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //när användaren väljer ett land, så ska jag köra AddPassport
+            AddPassport();
+        }
+
+        private void AddPassport()
+        {
+            if(lstPackingList.Items.Count > 0)
+            {
+                for(int i = 0; i < lstPackingList.Items.Count; i++)
+                {
+                    ListViewItem listViewItem = (ListViewItem)lstPackingList.Items[i];
+                    IPackingListItem packingItem = (IPackingListItem)listViewItem.Tag;
+                    if (packingItem.GetType() == typeof(TravelDocument))
+                    {
+                        lstPackingList.Items.RemoveAt(i);
+                    }
+                }
+                
+            }
+            
+            ListViewItem listViewPassport = new();
+            if (cbCountry.SelectedItem.GetType() == typeof(EuropeanCountry) && UserManager.SignedInUser!.Location.GetType() == typeof(EuropeanCountry))
+            {
+                TravelDocument passport = new("Passport", false);
+
+                listViewPassport.Content = passport.GetInfo();
+                listViewPassport.Tag = passport;
+                listViewPassport.IsEnabled = false;
+
+            }
+            else if (cbCountry.SelectedItem.GetType() == typeof(Country) && UserManager.SignedInUser!.Location.GetType() == typeof(EuropeanCountry))
+            {
+
+                TravelDocument passport = new("Passport", true);
+                listViewPassport.Content = passport.GetInfo();
+                listViewPassport.Tag = passport;
+                listViewPassport.IsEnabled = false;
+            }
+            else
+            {
+
+                TravelDocument passport = new("Passport", true);
+                listViewPassport.Content = passport.GetInfo();
+                listViewPassport.Tag = passport;
+                listViewPassport.IsEnabled = false;
+            }
+            lstPackingList.Items.Add(listViewPassport);
+           
+            //if cbcountry är från euCountry och User Country är från euCountry
+            //lägg till ett nytt traveldocument med namn passport och required till false
+
+            //else if cbCountry är från Country och User Country är från euCountry
+            //lägg till ett nytt traveldocument med namn passport och required till true
+            //else User Country är utanför
+            //Lägg till ett nytt traveldocument med namn passport och required till true
+
+            //sätt isenabled to false
+            
+
+        }
+
+        
     }
 }

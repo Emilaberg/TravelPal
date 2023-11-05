@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using TravelPal.Enums;
 using TravelPal.Interfaces;
 using TravelPal.Managers;
 
@@ -121,6 +124,40 @@ namespace TravelPal.Controllers
         {
             //hämta
             UserManager.SignedInUser = user; //SETS THE LOGGED IN USER TO CURRENTSIGNEDINUSER
+        }
+        
+        public static bool ValidateAllFields(string destination, string country, int travellers, DateTime startDate, DateTime endDate, string typeOfTravel, string meetingDetails)
+        {
+            if(destination == "")
+            {
+                MessageBox.Show("You need to type a Destination", "warning");
+                return false;
+            }
+            else if(country == "Select a country")
+            {
+                MessageBox.Show("You need to type a country", "warning");
+                return false;
+            }
+            else if(travellers == 0)
+            {
+                MessageBox.Show("atleast 1 traveller is needed", "warning");
+                return false;
+            }
+            else if (startDate.Date < DateTime.Today.AddDays(-1))
+            {
+                MessageBox.Show("start needs to be today or a date in the future", "warning");
+                return false;
+            }
+            else if (endDate.Date < DateTime.Today.AddDays(4))
+            {
+                MessageBox.Show("End Date needs to be 4 days from start date", "warning");
+                return false;
+            }
+            else
+            {
+                MessageBox.Show("Travel Added!", "Success!");
+                return true;
+            }
         }
     }
 }

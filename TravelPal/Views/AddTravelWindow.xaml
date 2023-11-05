@@ -51,7 +51,7 @@
         <TextBox Name="txtDestination" Grid.Column="3" Grid.Row="2" Height="30" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 10 0"/>
         <!--Country-->
         <Label Name="lblCountry" Content="Country" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
-        <ComboBox Name="cbCountry" Grid.Column="3" Grid.Row="3" Height="25" VerticalAlignment="Center" BorderBrush="black" Margin="0 0 10 0"/>
+        <ComboBox Name="cbCountry" Grid.Column="3" Grid.Row="3" Height="25" VerticalAlignment="Center" BorderBrush="black" Margin="0 0 10 0" SelectionChanged="CbCountry_SelectionChanged"/>
         <!--Amount of travelers-->
         <Label Name="lblAmountOfTravelers" Content="Amount of travelers" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14" FontWeight="DemiBold"/>
         <TextBox Name="txtAmountOfTravelers" Grid.Column="3" Grid.Row="4" Height="30" VerticalAlignment="Bottom" BorderBrush="black" Margin="0 0 10 0"/>
