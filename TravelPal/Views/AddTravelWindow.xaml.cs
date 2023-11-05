@@ -52,7 +52,9 @@ namespace TravelPal.Views
         private void UpdateUi(string type)
         {
             //Fyller upp comboboxen för countries.
+            cbCountry.Items.Clear();
             cbCountry.Items.Add("Select a country");
+            
             foreach (EuropeanCountry europeanCountry in Enum.GetValues(typeof(EuropeanCountry)))
             {
                 cbCountry.Items.Add(europeanCountry);
@@ -123,7 +125,32 @@ namespace TravelPal.Views
                 txtAmountOfTravelers.Text = travel.Travellers.ToString();
                 DateStartDate.SelectedDate = travel.StartDate;
                 DateEndDate.SelectedDate = travel.EndDate;
-                cbTypeOfTravel.SelectedItem = travel.GetType();
+                if(travel.GetType() == typeof(WorkTrip))
+                {
+                    WorkTrip worktrip = (WorkTrip)travel;
+                    cbTypeOfTravel.SelectedItem = "Work Trip";
+                    cbxMeetingDetails.IsChecked = true;
+                    cbxMeetingDetails.IsHitTestVisible = false;
+                    cbxMeetingDetails.Focusable = false;
+                    txtMeetingDetails.Text = worktrip.MeetingDetails;
+                    txtMeetingDetails.IsReadOnly = true;
+
+                }
+                else
+                {
+                    Vacation vacation = (Vacation)travel;
+                    cbTypeOfTravel.SelectedItem = "Vacation";
+                    cbxAllInclusiv.IsChecked = true;
+                    cbxAllInclusiv.IsHitTestVisible = false;
+                    cbxAllInclusiv.Focusable = false;
+                    cbxAllInclusiv.IsChecked = vacation.AllInclusive;
+
+                    
+
+                }
+                
+
+                //if(travel.GetType() == typeof(WorkTrip))
 
                 //lägger till varje packinglist item från resan man valt och lägger till det i listview:n
                 foreach (IPackingListItem item in travel.PackingList)
@@ -181,6 +208,11 @@ namespace TravelPal.Views
             BtnSaveEdit.IsEnabled = true;
             BtnEditTravel.Focusable = false;
             BtnCancel.IsEnabled = true;
+            txtMeetingDetails.IsReadOnly = false;
+            cbxMeetingDetails.IsHitTestVisible = true;
+            cbxMeetingDetails.Focusable = true;
+            cbxAllInclusiv.IsHitTestVisible = true;
+            cbxAllInclusiv.Focusable = true;
 
             //Sets packinglistitem to not selected
             lstPackingList.IsEnabled = true;
@@ -422,11 +454,22 @@ namespace TravelPal.Views
         private void CbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //när användaren väljer ett land, så ska jag köra AddPassport
+            if(cbCountry.Items.Count == 0)
+            {
+                return;
+            }
             AddPassport();
+           
         }
 
         private void AddPassport()
         {
+            //om man inte har ändrat country. 
+            //if (cbCountry.SelectedItem == UserManager.SignedInUser.Location )
+            //{
+            //    return;
+            //}
+
             if(lstPackingList.Items.Count > 0)
             {
                 for(int i = 0; i < lstPackingList.Items.Count; i++)

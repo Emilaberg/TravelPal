@@ -12,32 +12,17 @@ namespace TravelPal.Managers
         {
             new User()
             {
-                Username = "Emil",
+                Username = "user",
                 FromEu = true,
                 Location = Enums.EuropeanCountry.Finland,
-                Password = "123",
+                Password = "password",
 
-            },
-            new User()
-            {
-                Username = "Ella",
-                FromEu = false,
-                Location = Enums.Country.Chile,
-                Password = "123",
-            },
-            new User()
-            {
-                Username = "ahmed",
-                FromEu = false,
-                Location = Enums.Country.Canada,
-                Password = "00"
             },
             new Admin()
             {
                 Username = "admin",
-                Password = "0",
+                Password = "password",
                 Location = Enums.Country.Australia,
-
             }
         };
         public static IUser? SignedInUser { get; set; }

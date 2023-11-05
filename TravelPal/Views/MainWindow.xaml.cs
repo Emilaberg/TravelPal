@@ -12,8 +12,8 @@ namespace TravelPal.Views
         public MainWindow()
         {
             InitializeComponent();
-            txtUsername.Text = "";
-            txtPassword.Password = "";
+            txtUsername.Text = "user";
+            txtPassword.Password = "password";
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
