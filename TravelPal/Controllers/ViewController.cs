@@ -37,11 +37,6 @@ namespace TravelPal.Controllers
             return new RegisterWindow();
         }
 
-        public static TravelDetailsWindow TravelDetailsWindow()
-        {
-            return new TravelDetailsWindow();
-        }
-
         public static TravelsWindow TravelsWindow()
         {
             return new TravelsWindow();

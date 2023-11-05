@@ -12,13 +12,15 @@ namespace TravelPal.Views
         public MainWindow()
         {
             InitializeComponent();
+            txtUsername.Text = "";
+            txtPassword.Password = "";
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             //Kör loginController som validerar
 
-            if (ValidationController.ValidateLogin(txtUsername.Text, txtPassword.Text))
+            if (ValidationController.ValidateLogin(txtUsername.Text, txtPassword.Password))
             {
                 //Jag sätter den inloggade usern i logincontrollern om username och password stämmer överens.
                 //loginuser

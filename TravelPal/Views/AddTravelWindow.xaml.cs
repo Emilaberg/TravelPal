@@ -322,7 +322,7 @@ namespace TravelPal.Views
             bool success = int.TryParse(txtAmountOfTravelers.Text, out int res);
             if (success)
             {
-                if (!ValidationController.ValidateAllFields(txtDestination.Text, cbCountry.SelectedItem.ToString(), res, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, cbTypeOfTravel.SelectedItem.ToString(), meetingDetails))
+                if (!ValidationController.ValidateAllFields(txtDestination.Text, cbCountry.SelectedItem.ToString()!, res, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, cbTypeOfTravel.SelectedItem.ToString()!, meetingDetails))
                 {
                     return;
                 }
@@ -345,12 +345,12 @@ namespace TravelPal.Views
             if ((string)cbTypeOfTravel.SelectedItem == "Vacation")
             {
                 bool allInclusive = cbxAllInclusiv.IsChecked == true ? true : false;
-                TravelManager.AddVacation(allInclusive, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
+                TravelManager.AddVacation(allInclusive, txtDestination.Text, (object)cbCountry.SelectedItem, res, packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
                 
             }
             else
             {
-                TravelManager.AddWorkTrip(txtMeetingDetails.Text, txtDestination.Text, (object)cbCountry.SelectedItem, int.Parse(txtAmountOfTravelers.Text), packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
+                TravelManager.AddWorkTrip(txtMeetingDetails.Text, txtDestination.Text, (object)cbCountry.SelectedItem, res, packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
                 
             }
             

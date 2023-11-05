@@ -39,7 +39,9 @@
         <Label Content="Travel Pal" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" VerticalContentAlignment="Bottom" Padding="0" Margin="0 0 0 -10" FontSize="70" FontFamily="Arial" Foreground="#F6AE2D" FontWeight="Bold"/>
 
         <Border Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="7" BorderBrush="#000022" BorderThickness="2" CornerRadius="10" Background="#000022"/>
-        <Label Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Center" Content="Login or create an Account" Foreground="#F5FFFA" FontSize="18"/>
+        <Label Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Center" Content="Register you Account" Foreground="#F5FFFA" FontSize="18"/>
+        
+        <Button Name="BtnGoBack" Content="Go Back" Grid.Column="8" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="20" Background="#F6AE2D" Foreground="#000022" BorderBrush="#F6AE2D" FontWeight="Bold" FontSize="10" Margin="0 0 20 0" Click="BtnGoBack_Click" />
 
         <Label Content="Username" Foreground="#F5FFFA" Grid.Column="6" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0"/>
         <TextBox Name="txtUsername" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="4" VerticalAlignment="Center" />
@@ -48,12 +50,12 @@
         <ComboBox Name="cbCountry" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="5" VerticalAlignment="Center"/>
 
         <Label Content="Password" Foreground="#F5FFFA" Grid.Column="6" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 8 5 0"/>
-        <TextBox Name="txtPassword" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="6" VerticalAlignment="Center" Margin="0 10 0 4"/>
+        <PasswordBox Name="txtPassword" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="6" VerticalAlignment="Center" Margin="0 10 0 4"/>
         
         <Label Content="Confirm Password" Foreground="#F5FFFA" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="7" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 -5 5 0"/>
-        <TextBox Name="txtConfirmPassword" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="7" VerticalAlignment="Top"/>
+        <PasswordBox Name="txtConfirmPassword" Foreground="#000022" FontWeight="Medium" Grid.Column="7" Grid.Row="7" VerticalAlignment="Top"/>
 
         <Button Name="BtnRegister" Content="Register" Grid.Column="7" Grid.Row="8" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60" Background="#F6AE2D" Foreground="#000022" BorderBrush="#F6AE2D" FontWeight="Bold" FontSize="10" Click="BtnRegister_Click" />
-
+        
     </Grid>
 </Window>

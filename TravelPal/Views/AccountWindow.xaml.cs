@@ -45,7 +45,7 @@ namespace TravelPal.Views
 
             lblUsername.Content = user.Username;
             txtUsername.Text = user.Username;
-            txtPassword.Text = user.Password;
+            txtPassword.Password = user.Password;
 
             cbCountry.SelectedItem = user.Location;
 
@@ -86,16 +86,16 @@ namespace TravelPal.Views
 
             }
             //kollar om användare vill byta lösenord
-            if (txtConfirmNewPassword.Text != "")
+            if (txtConfirmNewPassword.Password != "")
             {
                 //Kolla så att lösenorden stämmer överens
-                if (txtPassword.Text != txtConfirmNewPassword.Text)
+                if (txtPassword.Password != txtConfirmNewPassword.Password)
                 {
                     MessageBox.Show("Password must match");
                     return;
                 }
                 //sätter det nya lösenordet
-                user.Password = txtPassword.Text;
+                user.Password = txtPassword.Password;
             }
 
             //kollar om användare har valt ett annat land.
