@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using TravelPal.Enums;
 using TravelPal.Interfaces;
 using TravelPal.Managers;
 
@@ -111,7 +109,7 @@ namespace TravelPal.Controllers
 
         public static bool ValidateSelectedCountry(string Location)
         {
-            if (Location == "Select a country")
+            if (Location == "Select a country") //check if the user have selected a country. the default location will be "select a country"
             {
                 MessageBox.Show("you need to select a country", "warning");
                 return false;
@@ -119,26 +117,19 @@ namespace TravelPal.Controllers
             return true;
         }
 
-        //använder ej då jag tycker att det ej behövs
-        public static void LoginUser(IUser user)
-        {
-            //hämta
-            UserManager.SignedInUser = user; //SETS THE LOGGED IN USER TO CURRENTSIGNEDINUSER
-        }
-        
         public static bool ValidateAllFields(string destination, string country, int travellers, DateTime startDate, DateTime endDate, string typeOfTravel, string meetingDetails)
         {
-            if(destination == "")
+            if (destination == "")
             {
                 MessageBox.Show("You need to type a Destination", "warning");
                 return false;
             }
-            else if(country == "Select a country")
+            else if (country == "Select a country")
             {
                 MessageBox.Show("You need to type a country", "warning");
                 return false;
             }
-            else if(travellers == 0)
+            else if (travellers == 0)
             {
                 MessageBox.Show("atleast 1 traveller is needed", "warning");
                 return false;

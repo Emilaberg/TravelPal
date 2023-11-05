@@ -51,7 +51,7 @@ namespace TravelPal.Views
 
         private void BtnGoBack_Click(object sender, RoutedEventArgs e)
         {
-            ViewController.MainWindow();
+            ViewController.MainWindow().Show();
             Close();
         }
     }

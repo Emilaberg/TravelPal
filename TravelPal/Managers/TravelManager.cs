@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 using TravelPal.Classes;
 using TravelPal.Enums;
 using TravelPal.Interfaces;
@@ -14,9 +10,10 @@ namespace TravelPal.Managers
     public static class TravelManager
     {
         private static int id;
+        //all of the created travels, two travels are created and set to the user with userid of 1,
         public static List<Travel>? Travels { get; set; } = new()
         {
-            new Vacation ( 
+            new Vacation (
                 true,
                 "Tokyo",
                 Country.Japan,
@@ -38,7 +35,7 @@ namespace TravelPal.Managers
                 1
             ),
         };
-        
+
 
         public static int CreateId()
         {
@@ -50,16 +47,16 @@ namespace TravelPal.Managers
         {
             List<Travel> usersTravels = new();
 
-            foreach(Travel travel in Travels!)
+            foreach (Travel travel in Travels!)
             {
-                if(travel.UserId == userId)
+                if (travel.UserId == userId)
                 {
                     usersTravels.Add(travel);
                 }
             }
             return usersTravels;
         }
-
+        //Gets the specific travel where the userId and travelId is used.
         public static Travel GetSpecificTravel(int userId, int travelId)
         {
             List<Travel> usersTravels = GetUserTravel(userId);
@@ -76,12 +73,14 @@ namespace TravelPal.Managers
             return null!;
         }
 
+        //Removes the specific travel, where the userId and travelid is equal to what inputted to the Method.
         public static bool RemoveSpecificTravel(int userId, int travelId)
         {
             Travels!.RemoveAll(t => t.UserId == userId && t.TravelId == travelId);
             return true;
         }
 
+        //Adds a vacation based on the inputted variables to the Method.
         public static bool AddVacation(bool allInclusive, string destination, object countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int userId)
         {
             try
@@ -97,8 +96,7 @@ namespace TravelPal.Managers
             }
         }
 
-        public static bool UpdateVacation() { return true; }
-
+        //Adds a work trip based on the inputted variables to the Method.
         public static bool AddWorkTrip(string meetingDetails, string destination, object countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int userId)
         {
             try
