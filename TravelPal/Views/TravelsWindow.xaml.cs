@@ -97,7 +97,7 @@ namespace TravelPal.Views
                 return;
             }
 
-            if (MessageBox.Show("YOU ARE ABOUT TO REMOVE YOUR ACCOUNT DO YOU WANT TO PROCEED?", "WARNING", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Do you want to remove the selected travel?", "WARNING", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 ListViewItem selectedItem = (ListViewItem)lstUserTravels.SelectedItem;
                 Travel selectedTravel = (Travel)selectedItem.Tag;
