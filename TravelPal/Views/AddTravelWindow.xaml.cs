@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TravelPal.Classes;
 using TravelPal.Controllers;
 using TravelPal.Enums;
@@ -54,7 +46,7 @@ namespace TravelPal.Views
             //Fyller upp comboboxen för countries.
             cbCountry.Items.Clear();
             cbCountry.Items.Add("Select a country");
-            
+
             foreach (EuropeanCountry europeanCountry in Enum.GetValues(typeof(EuropeanCountry)))
             {
                 cbCountry.Items.Add(europeanCountry);
@@ -69,7 +61,7 @@ namespace TravelPal.Views
             cbTypeOfTravel.Items.Add("Vacation");
             cbTypeOfTravel.Items.Add("Work Trip");
 
-                        
+
             //Clearer all comboboxen
             txtDestination.Text = "";
             cbCountry.SelectedIndex = 0;
@@ -82,7 +74,7 @@ namespace TravelPal.Views
             txtMeetingDetails.Text = "";
             lstPackingList.Items.Clear();
 
-                        
+
 
             if (type == "IsEditing" || editing == true)
             {
@@ -125,7 +117,7 @@ namespace TravelPal.Views
                 txtAmountOfTravelers.Text = travel.Travellers.ToString();
                 DateStartDate.SelectedDate = travel.StartDate;
                 DateEndDate.SelectedDate = travel.EndDate;
-                if(travel.GetType() == typeof(WorkTrip))
+                if (travel.GetType() == typeof(WorkTrip))
                 {
                     WorkTrip worktrip = (WorkTrip)travel;
                     cbTypeOfTravel.SelectedItem = "Work Trip";
@@ -145,10 +137,10 @@ namespace TravelPal.Views
                     cbxAllInclusiv.Focusable = false;
                     cbxAllInclusiv.IsChecked = vacation.AllInclusive;
 
-                    
+
 
                 }
-                
+
 
                 //if(travel.GetType() == typeof(WorkTrip))
 
@@ -158,14 +150,14 @@ namespace TravelPal.Views
                     if (item.GetType() == typeof(TravelDocument)) // Om typen av item är ett traveldocument så skapar jag ett traveldocument
                     {
                         TravelDocument travelDocument = (TravelDocument)item;
-                        if(travelDocument.Name.ToLower() != "passport")
+                        if (travelDocument.Name.ToLower() != "passport")
                         {
                             ListViewItem newPackingListItem = new();
                             newPackingListItem.Content = travelDocument.GetInfo();
                             newPackingListItem.Tag = travelDocument;
                             lstPackingList.Items.Add(newPackingListItem);
                         }
-                        
+
                     }
                     else // annars vill jag skapa ett otherItem
                     {
@@ -191,7 +183,7 @@ namespace TravelPal.Views
                     BtnEditTravel.IsEnabled = true;
                 }
             }
-            
+
         }
         private void BtnEditTravel_Click(object sender, RoutedEventArgs e)
         {
@@ -231,15 +223,15 @@ namespace TravelPal.Views
             BtnCancel.Opacity = 1;
             BtnSaveEdit.BorderBrush = new SolidColorBrush(Colors.LimeGreen);
             BtnEditTravel.BorderBrush = new SolidColorBrush(Colors.Orange);
-            
+
         }
         //Updating the UI
-        
+
 
         //for UI
         private void cbTypeOfTravel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if((string)cbTypeOfTravel.SelectedItem == "Vacation") 
+            if ((string)cbTypeOfTravel.SelectedItem == "Vacation")
             {
                 //gömmer meetingdetails
                 lblMeetingDetails.Visibility = Visibility.Hidden;
@@ -250,7 +242,8 @@ namespace TravelPal.Views
                 //visar allinclusive
                 lblAllInclusive.Visibility = Visibility.Visible;
                 cbxAllInclusiv.Visibility = Visibility.Visible;
-            }else if((string)cbTypeOfTravel.SelectedItem == "Work Trip")
+            }
+            else if ((string)cbTypeOfTravel.SelectedItem == "Work Trip")
             {
                 //gömmer meeting details
                 lblMeetingDetails.Visibility = Visibility.Visible;
@@ -260,7 +253,7 @@ namespace TravelPal.Views
                 lblAllInclusive.Visibility = Visibility.Hidden;
                 cbxAllInclusiv.Visibility = Visibility.Hidden;
 
-                
+
             }
         }
         //for UI
@@ -290,18 +283,18 @@ namespace TravelPal.Views
             lblQuantity.Visibility = Visibility.Visible;
             txtQuantity.Visibility = Visibility.Visible;
 
-            
+
         }
         //UI METHODS//
 
         // FRONT END //
-        
+
         // when adding a packing list item 
         private void BtnAddPackListItem_Click(object sender, RoutedEventArgs e)
         {
             //om namnet på item är passport 
-                //skriv att man passport är redan inlagt
-            if(txtNameOfItem.Text.ToLower() == "passport")
+            //skriv att man passport är redan inlagt
+            if (txtNameOfItem.Text.ToLower() == "passport")
             {
                 MessageBox.Show("Passport will be added when selecting country, If you wish to add more passport, add passport as Extra passports and choose quantity.", "Warning");
                 return;
@@ -317,7 +310,7 @@ namespace TravelPal.Views
                 newPackingListItem.Content = newTravelDocument.GetInfo();
                 newPackingListItem.Tag = newTravelDocument;
                 lstPackingList.Items.Add(newPackingListItem);
-                
+
             }
             else // annars vill jag skapa ett otherItem
             {
@@ -352,17 +345,29 @@ namespace TravelPal.Views
             string meetingDetails = cbxAllInclusiv.IsChecked == true ? txtMeetingDetails.Text : "";
 
             bool success = int.TryParse(txtAmountOfTravelers.Text, out int res);
-            if (success)
+            if (DateStartDate.Text == "")
+            {
+                MessageBox.Show("you need to select a start date", "warning");
+                return;
+            }
+            else if (DateEndDate.Text == "")
+            {
+                MessageBox.Show("you need to select a end date", "warning");
+                return;
+            }
+            else if (success == false)
+            {
+                MessageBox.Show("amount of travelers need to be a number", "warning");
+                return;
+            }
+            else
             {
                 if (!ValidationController.ValidateAllFields(txtDestination.Text, cbCountry.SelectedItem.ToString()!, res, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, cbTypeOfTravel.SelectedItem.ToString()!, meetingDetails))
                 {
                     return;
                 }
-            }
-            else
-            {
-                MessageBox.Show("amount of travelers need to be a number", "warning");
-                return;
+
+
             }
 
             //skapa en ny Travel och lägg in all data från det man skrivit in
@@ -378,14 +383,14 @@ namespace TravelPal.Views
             {
                 bool allInclusive = cbxAllInclusiv.IsChecked == true ? true : false;
                 TravelManager.AddVacation(allInclusive, txtDestination.Text, (object)cbCountry.SelectedItem, res, packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
-                
+
             }
             else
             {
                 TravelManager.AddWorkTrip(txtMeetingDetails.Text, txtDestination.Text, (object)cbCountry.SelectedItem, res, packingListItems, (DateTime)DateStartDate.SelectedDate, (DateTime)DateEndDate.SelectedDate, UserManager.SignedInUser!.Id);
-                
+
             }
-            
+
             UpdateUi("Save");
         }
 
@@ -426,9 +431,9 @@ namespace TravelPal.Views
                 workTrip.PackingList = packingListItems;
                 workTrip.StartDate = (DateTime)DateStartDate.SelectedDate;
                 workTrip.EndDate = (DateTime)DateEndDate.SelectedDate;
-                
+
             }
-            
+
             UpdateUi("SaveEdit");
         }
 
@@ -454,12 +459,12 @@ namespace TravelPal.Views
         private void CbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //när användaren väljer ett land, så ska jag köra AddPassport
-            if(cbCountry.Items.Count == 0)
+            if (cbCountry.Items.Count == 0)
             {
                 return;
             }
             AddPassport();
-           
+
         }
 
         private void AddPassport()
@@ -471,9 +476,9 @@ namespace TravelPal.Views
             //}
 
             //
-            if(lstPackingList.Items.Count > 0)
+            if (lstPackingList.Items.Count > 0)
             {
-                for(int i = 0; i < lstPackingList.Items.Count; i++)
+                for (int i = 0; i < lstPackingList.Items.Count; i++)
                 {
                     ListViewItem listViewItem = (ListViewItem)lstPackingList.Items[i];
                     IPackingListItem packingItem = (IPackingListItem)listViewItem.Tag;
@@ -482,9 +487,9 @@ namespace TravelPal.Views
                         lstPackingList.Items.RemoveAt(i);
                     }
                 }
-                
+
             }
-            
+
             ListViewItem listViewPassport = new();
             if (cbCountry.SelectedItem.GetType() == typeof(EuropeanCountry) && UserManager.SignedInUser!.Location.GetType() == typeof(EuropeanCountry))
             {
@@ -512,7 +517,7 @@ namespace TravelPal.Views
                 listViewPassport.IsEnabled = false;
             }
             lstPackingList.Items.Add(listViewPassport);
-           
+
             //if cbcountry är från euCountry och User Country är från euCountry
             //lägg till ett nytt traveldocument med namn passport och required till false
 
@@ -522,7 +527,7 @@ namespace TravelPal.Views
             //Lägg till ett nytt traveldocument med namn passport och required till true
 
             //sätt isenabled to false
-            
+
 
         }
 
