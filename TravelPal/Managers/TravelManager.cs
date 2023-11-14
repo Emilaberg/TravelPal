@@ -60,9 +60,7 @@ namespace TravelPal.Managers
         public static Travel GetSpecificTravel(int userId, int travelId)
         {
             List<Travel> usersTravels = GetUserTravel(userId);
-            //Jag hittade ett problem här Albin, när jag hittar den specifica traveln så vill jag returnera den och sedan bryta loopen. så att jag inte fortsätter att loopa genom userns resor i onödan.
-            //Men jag har försökt sätta usertravel till en object variabel "specificTravel" och sedan returnera den den variabeln castad till en travel. men varje gång jag returnera variabeln så returneras den som null.
-            //Jag kommer ta upp detta i min rapport, men jag vill gärna prata med dig om det sen och se hur man kan lösa det :)
+
             foreach (Travel userTravel in usersTravels)
             {
                 if (userTravel.TravelId == travelId)
@@ -70,6 +68,7 @@ namespace TravelPal.Managers
                     return userTravel;
                 }
             }
+
             return null!;
         }
 
