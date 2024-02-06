@@ -8,6 +8,7 @@ namespace TravelPal.Managers
     public static class UserManager
     {
         private static int id;
+        //List of all the users created, also creates two new users.
         public static List<IUser>? Users { get; set; } = new()
         {
             new User()
@@ -25,8 +26,11 @@ namespace TravelPal.Managers
                 Location = Enums.Country.Australia,
             }
         };
+        //the signed in user.
         public static IUser? SignedInUser { get; set; }
 
+
+        //adds a user.
         public static bool AddUser(string username, string password, object location)
         {
             //skapar en ny användare

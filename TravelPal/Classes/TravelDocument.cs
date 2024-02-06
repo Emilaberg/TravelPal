@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TravelPal.Interfaces;
+﻿using TravelPal.Interfaces;
 
 namespace TravelPal.Classes
 {
-    internal class TravelDocument: IPackingListItem
+    internal class TravelDocument : IPackingListItem
     {
         public string Name { get; set; }
         public bool Required { get; set; }
@@ -20,7 +15,7 @@ namespace TravelPal.Classes
 
         public string GetInfo()
         {
-            string info = Required ? "Is required" : "Is not required";
+            string info = Required ? "Is required" : "Is not required"; //sets info to either Is required or is not required based on the traveldocument is required.
             return $"Item: {Name} {info}";
         }
     }

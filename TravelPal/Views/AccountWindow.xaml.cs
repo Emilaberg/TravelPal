@@ -32,7 +32,7 @@ namespace TravelPal.Views
             }
             UpdateUi("init");
         }
-
+        //updates the ui
         private void UpdateUi(string info)
         {
             if (info == "update" || info == "cancel")
@@ -64,7 +64,6 @@ namespace TravelPal.Views
             }
 
         }
-
 
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)

@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using TravelPal.Classes;
 using TravelPal.Controllers;
 using TravelPal.Interfaces;
 using TravelPal.Managers;
-using TravelPal.Classes;
 
 namespace TravelPal.Views
 {
@@ -30,7 +20,7 @@ namespace TravelPal.Views
             InitializeComponent();
 
             InitUi();
-            
+
         }
 
         private void InitUi()
@@ -79,7 +69,7 @@ namespace TravelPal.Views
 
         private void BtnAddTravel_Click(object sender, RoutedEventArgs e)
         {
-            
+
             ViewController.AddTravelWindow().Show();
             Close();
         }
@@ -107,14 +97,17 @@ namespace TravelPal.Views
                 return;
             }
 
-            ListViewItem selectedItem = (ListViewItem)lstUserTravels.SelectedItem;
-            Travel selectedTravel = (Travel)selectedItem.Tag;
-            //lägg i travelmanager
-            if (TravelManager.RemoveSpecificTravel(UserManager.SignedInUser!.Id, selectedTravel.TravelId))
+            if (MessageBox.Show("Do you want to remove the selected travel?", "WARNING", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                UpdateUi("update");
+                ListViewItem selectedItem = (ListViewItem)lstUserTravels.SelectedItem;
+                Travel selectedTravel = (Travel)selectedItem.Tag;
+                //lägg i travelmanager
+                if (TravelManager.RemoveSpecificTravel(UserManager.SignedInUser!.Id, selectedTravel.TravelId))
+                {
+                    UpdateUi("update");
+                }
             }
-            
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
