@@ -45,31 +45,6 @@ namespace TravelPal.Managers
 
         }
 
-        public static void RemoveUser(IUser user)
-        {
-
-        }
-
-        public static bool UpdateUsername(IUser user, string newUsername)
-        {
-            //return true if successfull
-            return false;
-        }
-
-        //Behövs ej, GÖRS I VALIDATECONTROLLER
-        private static bool ValidateUsername(string username)
-        {
-            //return true if successfull
-            return false;
-        }
-
-        //Behövs ej, GÖRS I CODE BEHINDEN PÅ ANTINGEN LOGIN ELLER REGISTER WINDOW. VIEWCONTROLLERN SERVAR DE KORREKTA SIDORNA OM ALLT ALL VALIDERING ÄR GODKÄND.
-        public static bool SignInUser(string username, string password)
-        {
-            //return true if successfull
-            return false;
-        }
-
         public static int CreateId()
         {
             return ++id;

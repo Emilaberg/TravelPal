@@ -97,8 +97,6 @@ namespace TravelPal.Managers
             }
         }
 
-        public static bool UpdateVacation() { return true; }
-
         public static bool AddWorkTrip(string meetingDetails, string destination, object countries, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int userId)
         {
             try
